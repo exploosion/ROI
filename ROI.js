@@ -775,7 +775,7 @@ function checkFormState(){
 }
 
 function checkMedicaid(){
-	if(formState = 'new'){
+	if(formState == 'new'){
 		$('tr').has('div[insuranceType=medicaid]').find('input').each(function(){
 			if(!$(this).prop('checked')){
 				$(this).trigger('click');
