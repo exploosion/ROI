@@ -761,6 +761,11 @@ var formState;
 function checkFormState(){
 	formState = 'new';
 	for(let count = 0; count < arguments.length; count++){
+		while($('tr').has(`div[class=${arguments[count]}], div[id=${arguments[count]}]`).length == 0){
+
+		}
+	}
+	for(let count = 0; count < arguments.length; count++){
 		if($('tr').has(`div[class=${arguments[count]}], div[id=${arguments[count]}]`).find('input:checked').length || $('tr').has(`div[class=${arguments[count]}], div[id=${arguments[count]}]`).find('input').val() || $('tr').has(`div[class=${arguments[count]}], div[id=${arguments[count]}]`).find('select').val()){
 			formState = 'reloaded';
 		}
@@ -778,10 +783,9 @@ function checkMedicaid(){
 }
 
 window.onload = function(){
-    setTimeout(function(){
-        checkFormState.apply(null, ['releaseType', 'recipientSenderType']);
-	    checkMedicaid();
-    }, 5000);
+  checkFormState.apply(null, ['releaseType', 'recipientSenderType']);
+  checkMedicaid();
+    
 };
 
 ///Debug Test
