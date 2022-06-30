@@ -781,6 +781,10 @@ function checkMedicaid(){
 				$(this).trigger('click');
 			}
 		});
+		console.log('Checking All');
+	}
+	else{
+		console.log('Checking None')
 	}
 }
 
