@@ -771,6 +771,7 @@ function checkFormState(){
 		}
 	}
 	console.log(formState);
+	checkMedicaid();
 }
 
 function checkMedicaid(){
@@ -784,9 +785,7 @@ function checkMedicaid(){
 }
 
 window.onload = function(){
-  checkFormState.apply(null, ['releaseType', 'recipientSenderType']);
-  checkMedicaid();
-    
+  checkFormState.apply(null, ['releaseType', 'recipientSenderType']);    
 };
 
 ///Debug Test
