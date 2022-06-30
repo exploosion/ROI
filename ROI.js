@@ -777,12 +777,12 @@ function checkMedicaid(){
 	}
 }
 
-$('document').ready(function(){
+window.onload = function(){
     setTimeout(function(){
         checkFormState.apply(null, ['releaseType', 'recipientSenderType']);
 	    checkMedicaid();
     }, 1000);
-});
+};
 
 ///Debug Test
 function debugTest(){
