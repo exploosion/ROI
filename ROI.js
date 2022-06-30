@@ -808,6 +808,7 @@ $('document').ready(function(){
 	hideOption('payerDriver', 'CHA Special Auth. Rate ');
 	hideOption('payerDriver', 'CHA SUD ');
 	hideOption('payerDriver', 'CHAACT');
+	hideOption('payerDriver', 'OMAP');
 	hideOption('payerDriver', 'OMAP CAWEM');
 	hideOption('payerDriver', 'OMAP QMB ');
 	hideOption('payerDriver', 'OMAP SMB');
