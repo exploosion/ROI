@@ -168,43 +168,39 @@ function clearDropdowns ()
 }
 
 //Functions to drive mandatory hidden questions
-function requireHidden (condition, target)
-{
-	$('tr').find('div[class*=' + target + ']').next().remove();
-	
-	if(condition)
-	{
-		$('tr').has('div[class*=' + target + ']').find('input').prop('required', true);
-		$('tr').has('div[class*=' + target + ']').find('select').prop('required', true);
+function requireHidden (condition, target) { 
+	$('tr').find('div[class*=' + target + ']').next().remove(); 
+	$('tr').find('div[id=' + target + ']').next().remove();  
+	if(condition) { 
+		$('tr').has('div[class*=' + target + ']').find('input').prop('required', true); 
+		$('tr').has('div[class*=' + target + ']').find('select').prop('required', true); 
 		$('tr').find('div[class*=' + target + ']').after('<div class=\'redAsterisk\' style=\'color : red; display : inline\'>*</div>');
-	}
-	else
-	{
-		$('tr').has('div[class*=' + target + ']').find('input').prop('required', false);
-		$('tr').has('div[class*=' + target + ']').find('select').prop('required', false);
-	}
-}
+		$('tr').has('div[id=' + target + ']').find('input').prop('required', true); 
+		$('tr').has('div[id=' + target + ']').find('select').prop('required', true); 
+		$('tr').find('div[id=' + target + ']').after('<div class=\'redAsterisk\' style=\'color : red; display : inline\'>*</div>');  
+	} 
+	else { 
+		$('tr').has('div[class*=' + target + ']').find('input').prop('required', false); 
+		$('tr').has('div[class*=' + target + ']').find('select').prop('required', false); 
+		$('tr').has('div[id=' + target + ']').find('input').prop('required', false); 
+		$('tr').has('div[id=' + target + ']').find('select').prop('required', false);
+	} 
+}  
 
-function requireHiddenNotes (condition, target)
-{
-		if(condition)
-		{
-			$('tr').has('div[class*=' + target + ']').next().find('textarea').prop('required', true);
-		}
-		else
-		{
-			$('tr').has('div[class*=' + target + ']').next().find('textarea').prop('required', false);
-		}
-		
-		if(condition)
-		{
-			$('tr').has('div[id=' + target + ']').next().find('textarea').prop('required', true);
-		}
-		else
-		{
-			$('tr').has('div[id=' + target + ']').next().find('textarea').prop('required', false);
-		}
-}
+function requireHiddenNotes (condition, target) { 
+	$('tr').find('div[class*=' + target + ']').next().remove(); 
+	$('tr').find('div[id=' + target + ']').next().remove();  
+	if(condition) { 
+		$('tr').has('div[class*=' + target + ']').next().find('textarea').prop('required', true); 
+		$('tr').find('div[class*=' + target + ']').after('<div class=\'redAsterisk\' style=\'color : red; display : inline\'>*</div>');
+		$('tr').has('div[id=' + target + ']').next().find('textarea').prop('required', true); 
+		$('tr').find('div[id=' + target + ']').after('<div class=\'redAsterisk\' style=\'color : red; display : inline\'>*</div>');
+	} 
+	else { 
+		$('tr').has('div[class*=' + target + ']').next().find('textarea').prop('required', false); 
+		$('tr').has('div[id=' + target + ']').next().find('textarea').prop('required', false);   
+	} 
+}  
 
 //Event handlers for mandatory hidden questions
 $(document).ready(function(){
