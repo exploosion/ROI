@@ -806,15 +806,15 @@ $('document').ready(function(){
 	hideOption('payerDriver', 'Cascade Health Alliance');
 	hideOption('payerDriver', 'CHA RES');
 	hideOption('payerDriver', 'CHA Special Auth. Rate ');
-	hideOption('payerDriver', 'CHA SUD');
+	hideOption('payerDriver', 'CHA SUD ');
 	hideOption('payerDriver', 'CHAACT');
 	hideOption('payerDriver', 'OMAP CAWEM');
-	hideOption('payerDriver', 'OMAP QMB');
+	hideOption('payerDriver', 'OMAP QMB ');
 	hideOption('payerDriver', 'OMAP SMB');
 	hideOption('payerDriver', 'OMAP SMF');
 	hideOption('payerDriver', 'OMAP Tier 1 Absent');
 	hideOption('payerDriver', 'OMAP Tier 2');
-	hideOption('payerDriver', 'Omap Tier 3');
+	hideOption('payerDriver', 'OMAP Tier 3');
 	hideOption('payerDriver', 'OMAP Tier 4');
 	hideOption('payerDriver', 'OMAP Tier 5');
 	hideOption('payerDriver', 'zTest');
