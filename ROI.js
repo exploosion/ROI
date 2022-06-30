@@ -792,6 +792,19 @@ window.onload = function(){
   checkFormState.apply(null, ['releaseType', 'recipientSenderType']);    
 };
 
+//Hide unwanted Options in Select
+function hideOption (target, optionText, mode = 'hide'){
+	if(mode == 'hide'){
+		$('tr').has(`div[id=${target}], div[class*=${target}]`).find(`option:contains(${optionText})`).hide();
+	}
+	else{
+		$('tr').has(`div[id=${target}], div[class*=${target}]`).find(`option:contains(${optionText})`).show();
+	}
+	
+}
+
+
+
 ///Debug Test
 function debugTest(){
     $('td').has('div[class*=hideMe]').css('display', 'inline-block');
