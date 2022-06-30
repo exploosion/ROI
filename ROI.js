@@ -781,7 +781,7 @@ window.onload = function(){
     setTimeout(function(){
         checkFormState.apply(null, ['releaseType', 'recipientSenderType']);
 	    checkMedicaid();
-    }, 1000);
+    }, 5000);
 };
 
 ///Debug Test
