@@ -770,6 +770,7 @@ function checkFormState(){
 			formState = 'reloaded';
 		}
 	}
+	console.log(formState);
 }
 
 function checkMedicaid(){
