@@ -855,7 +855,9 @@ $('document').ready(function(){
 	$('tr').has('div[insuranceType=medicaid]').find('input').tooltip();
 	$('tr').has('div[class*=payerDriver]').find('select').change(whenCHAOMAP);
 
-	setTimeout(whenCHAOMAP, 1000);
+	setTimeout(function(){
+		whenCHAOMAP();
+	}, 1000);
 });
 
 ///Debug Test
