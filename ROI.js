@@ -272,7 +272,9 @@ $(document).ready(function(){
 	});
 
 	//On form load show dropdowns based on Recipient/Sender type
-	dropdownShowHide();
+	setTimeout(function(){
+		dropdownShowHide();
+	}, 1000); 
 });
 
 //Event handlers for mandatory hidden note fields
