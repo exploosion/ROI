@@ -832,6 +832,17 @@ function setMedicaid(){
 	}
 }
 
+function whenCHAOMAP(){
+	if($('tr').has('div[id=payerName]').find('input').val() == 'CHA/OMAP'){
+		$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>As a Medicaid member, your insurance requires you release all KBBH records to all local Medicaid payers in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li><li>As a Medicare member, your insurance requires you release all KBBH records in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li><li>Your insurance requires you release records related to both mental health and substance use disorders in order for KBBH to bill your insurance, regardless of past or future services in these areas.  Without this release, we will not be able to bill your insurance and you will be financially responsible for any charges to your account.</li></ul>');
+
+		setMedicaid();
+	}
+	else{
+		$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '');
+	}
+}
+
 $('document').ready(function(){
 	//Prevent input if CHA/OMAP
 	$('tr').has('div[insuranceType=medicaid]').find('input').click(function(e){
@@ -842,16 +853,9 @@ $('document').ready(function(){
 
 	//When CHA/OMAP add script to tooltips
 	$('tr').has('div[insuranceType=medicaid]').find('input').tooltip();
-	$('tr').has('div[class*=payerDriver]').find('select').change(function(){
-		if($('tr').has('div[id=payerName]').find('input').val() == 'CHA/OMAP'){
-			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>As a Medicaid member, your insurance requires you release all KBBH records to all local Medicaid payers in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li><li>As a Medicare member, your insurance requires you release all KBBH records in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li><li>Your insurance requires you release records related to both mental health and substance use disorders in order for KBBH to bill your insurance, regardless of past or future services in these areas.  Without this release, we will not be able to bill your insurance and you will be financially responsible for any charges to your account.</li></ul>');
+	$('tr').has('div[class*=payerDriver]').find('select').change(whenCHAOMAP);
 
-			setMedicaid();
-		}
-		else{
-			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '');
-		}
-	});
+	setTimeout(whenCHAOMAP, 1000);
 });
 
 ///Debug Test
