@@ -357,6 +357,9 @@ function checkHidden ()
 $(document).ready(function() 
 {         
 	checkHidden();
+	setTimeout(function(){
+		checkHidden();
+	}, 1000);
 	$('tr').has('div[class=expiredROI]').find('input').css('display', 'inline');
 	$('tr').has('div[class=invalidROI]').find('input').css('display', 'inline');
 	$('tr').has('div[class=revokedROI]').find('input').css('display', 'inline');
