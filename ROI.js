@@ -781,7 +781,7 @@ function checkMedicaid(){
 	}
 	else{
 		console.log('Checking None')
-	}
+	}	
 }
 
 window.onload = function(){
@@ -815,6 +815,13 @@ $('document').ready(function(){
 	hideOption('payerDriver', 'OMAP Tier 4');
 	hideOption('payerDriver', 'OMAP Tier 5');
 	hideOption('payerDriver', 'zTest');
+
+	//Prevent input if CHA/OMAP
+	$('tr').has('div[insuranceType=medicaid]').find('input').click(function(e){
+		if($('tr').has('div[id=payerName]').find('input').val() == 'CHA/OMAP'){
+			e.preventDefault();
+		}
+	});
 });
 
 ///Debug Test
