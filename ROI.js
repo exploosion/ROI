@@ -312,7 +312,21 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$('tr').has('div[class*=nlcbBr]').find('input[type=checkbox]').before('<br>');
 	$('tr').find('div[class*=nlcbBr]').css('display', 'inline');
+
+	checkVoid();
+	setTimeout(function(){
+		checkVoid();
+	}, 1000);
 });
+
+function checkVoid(){
+	$('td').has('div[id=reason]').css('display', 'none');
+	$('tr').has('div[id=reason]').next().find('td').css('display', 'none');
+	if($('tr').has('div[class=revocationRequiredDriver]').find('input').prop('checked')){
+		$('td').has('div[id=reason]').css('display', 'inline');
+		$('tr').has('div[id=reason]').next().find('td').css('display', 'inline');
+	}
+}
 
 function checkHidden () 
 {     
