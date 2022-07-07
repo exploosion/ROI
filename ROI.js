@@ -750,7 +750,9 @@ function checkSUD(){
 }
 
 $('document').ready(function(){
-	checkSUD();
+	setTimeout(function(){
+		checkSUD();
+	}, 1000); 
 	
 	$('tr').has('div[id=sudAll]').find('input').change(checkSUD);
 	$('tr').has('div[id=sudOption]').find('input').change(checkSUD);
@@ -827,6 +829,8 @@ $('document').ready(function(){
 			e.preventDefault();
 		}
 	});
+
+
 });
 
 ///Debug Test
