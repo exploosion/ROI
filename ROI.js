@@ -270,6 +270,9 @@ $(document).ready(function(){
 	{
 		requireHidden( ($('tr').has('div[class*=voidType]').find('select').val() == $('tr').has('div[class*=voidType]').find('option:contains(\'Revoked\')').val()), 'revocationDetails');
 	});
+
+	//On form load show dropdowns based on Recipient/Sender type
+	dropdownShowHide();
 });
 
 //Event handlers for mandatory hidden note fields
