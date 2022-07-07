@@ -317,6 +317,7 @@ $(document).ready(function(){
 	setTimeout(function(){
 		checkVoid();
 	}, 1000);
+	$('tr').has('div[class=revocationRequiredDriver]').find('input').change(checkVoid);
 });
 
 function checkVoid(){
