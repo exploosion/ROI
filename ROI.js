@@ -834,7 +834,7 @@ function whenCHAOMAP(){
 	else if($('tr').has('div[id=payerName]').find('input').val() == 'Medicare'){
 		$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>As a Medicare member, your insurance requires you release all KBBH records in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li></ul>');
 	}
-	else if($('tr').has('div[id=payerName]').find('input').val() != null && $('tr').has('div[id=payerName]').find('input').val() != 'CHA/OMAP' && $('tr').has('div[id=payerName]').find('input').val() == 'Medicare'){
+	else if($('tr').has('div[id=payerName]').find('input').val() != null && $('tr').has('div[id=payerName]').find('input').val() != 'CHA/OMAP' && $('tr').has('div[id=payerName]').find('input').val() != 'Medicare'){
 		$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>Your insurance requires you release records related to both mental health and substance use disorders in order for KBBH to bill your insurance, regardless of past or future services in these areas.  Without this release, we will not be able to bill your insurance and you will be financially responsible for any charges to your account.</li></ul>');
 	}
 	else{
