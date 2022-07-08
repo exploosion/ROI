@@ -762,6 +762,20 @@ function checkMedicaid(){
 			}
 		});
 		console.log('Checking All');
+
+		$('tr').has('div[id=releaseType]').find('select').val($('tr').has('div[id=releaseType]').find('option').filter(function (){return $(this).html() == 'Release/Receive Records/Information';}).val());
+
+		$('tr').has('div[id=releaseType]').find('select').trigger('change');
+		
+		$('tr').has('div[id=recipientSenderType]').find('select').val($('tr').has('div[id=recipientSenderType]').find('option').filter(function (){return $(this).html() == 'Payer';}).val());
+
+		$('tr').has('div[id=recipientSenderType]').find('select').trigger('change');
+		
+		$('tr').has('div[class*=payerDriver]').find('select').val($('tr').has('div[class*=payerDriver]').find('option').filter(function (){return $(this).html() == 'CHA/OMAP';}).val());
+
+		$('tr').has('div[class*=payerDriver]').find('select').trigger('change');
+
+		console.log('Defaulting to CHA/OMHP');
 	}
 	else{
 		console.log('Checking None')
