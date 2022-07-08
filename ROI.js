@@ -699,47 +699,6 @@ $('document').ready(function(){
 	$('tr').has('div[id=recipientSenderType]').find('select').change(checkPayer);
 });
 
-//Auto populate message for Outreach
-var programID;
-
-function checkOutreach(){
-	if(programID == 138 && $('tr').has('div[class*=providerDriverText]').find('input').val() == 'PSU-Regional Research Institute for Human Services')
-	{
-		$('tr').has('div[id=informationRecordsOutreach]').find('input').prop('checked', false);
-		$('tr').has('div[id=informationRecordsOutreach]').find('input').trigger('click');
-		$('tr').has('div[class=phiRequiredNotes]').find('tr:contains(\'Program Evaluation & Research\')').eq(1).find('input').prop('checked', true);
-		$('td').has('div[id=informationRecordsOutreach]').show();
-		$('tr').has('div[id=informationRecordsOutreach]').next().show();
-		$('tr:contains(\'Program Evaluation & Research (not for treatment purposes)\')').eq(2).show();
-		console.log('Is Outreach');
-	}
-	else
-	{
-		$('tr').has('div[id=informationRecordsOutreach]').find('input').prop('checked', true);
-		$('tr').has('div[id=informationRecordsOutreach]').find('input').trigger('click');
-		$('tr').has('div[id=informationRecordsOutreach]').next().find('textarea').val('');
-		$('tr').has('div[class=phiRequiredNotes]').find('tr:contains(\'Program Evaluation & Research\')').eq(1).find('input').prop('checked', false);
-		$('td').has('div[id=informationRecordsOutreach]').hide();
-		$('tr').has('div[id=informationRecordsOutreach]').next().hide();
-		$('tr:contains(\'Program Evaluation & Research (not for treatment purposes)\')').eq(2).hide();
-		console.log('Not Outreach');
-	}
-}
-
-$('document').ready(function(){
-	try{
-		programID = window.parent[0].$('input[id=programId]').val();
-	}
-	catch{
-		if(programID == undefined){
-			programID = 130;
-		}
-	}
-
-	checkOutreach();
-	$('tr').has('div[class*=providerDriver]').find('select').change(checkOutreach);
-});
-
 //SUD All Options
 function checkSUD(){
 	if($('tr').has('div[id=sudAll]').find('input').prop('checked')){
@@ -852,9 +811,17 @@ function setMedicaid(){
 
 function whenCHAOMAP(){
 	if($('tr').has('div[id=payerName]').find('input').val() == 'CHA/OMAP'){
-		$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>As a Medicaid member, your insurance requires you release all KBBH records to all local Medicaid payers in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li><li>As a Medicare member, your insurance requires you release all KBBH records in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li><li>Your insurance requires you release records related to both mental health and substance use disorders in order for KBBH to bill your insurance, regardless of past or future services in these areas.  Without this release, we will not be able to bill your insurance and you will be financially responsible for any charges to your account.</li></ul>');
+		$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>As a Medicaid member, your insurance requires you release all KBBH records to all local Medicaid payers in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li></ul>');
 
 		setMedicaid();
+
+		$('tr').has('div[class*=payerPassengerText]').find('input').val('');
+	}
+	else if($('tr').has('div[id=payerName]').find('input').val() == 'Medicare'){
+		$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>As a Medicare member, your insurance requires you release all KBBH records in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li></ul>');
+	}
+	else if($('tr').has('div[id=payerName]').find('input').val() != null && $('tr').has('div[id=payerName]').find('input').val() != 'CHA/OMAP' && $('tr').has('div[id=payerName]').find('input').val() == 'Medicare'){
+		$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>Your insurance requires you release records related to both mental health and substance use disorders in order for KBBH to bill your insurance, regardless of past or future services in these areas.  Without this release, we will not be able to bill your insurance and you will be financially responsible for any charges to your account.</li></ul>');
 	}
 	else{
 		$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '');
@@ -876,6 +843,50 @@ $('document').ready(function(){
 	setTimeout(function(){
 		whenCHAOMAP();
 	}, 1000);
+});
+
+//Auto populate message for Outreach and default to CHA/OMAP if not
+var programID;
+
+function checkOutreach(){
+	if(programID == 138 && $('tr').has('div[class*=providerDriverText]').find('input').val() == 'PSU-Regional Research Institute for Human Services')
+	{
+		$('tr').has('div[id=informationRecordsOutreach]').find('input').prop('checked', false);
+		$('tr').has('div[id=informationRecordsOutreach]').find('input').trigger('click');
+		$('tr').has('div[class=phiRequiredNotes]').find('tr:contains(\'Program Evaluation & Research\')').eq(1).find('input').prop('checked', true);
+		$('td').has('div[id=informationRecordsOutreach]').show();
+		$('tr').has('div[id=informationRecordsOutreach]').next().show();
+		$('tr:contains(\'Program Evaluation & Research (not for treatment purposes)\')').eq(2).show();
+		console.log('Is Outreach');
+	}
+	else
+	{
+		$('tr').has('div[id=informationRecordsOutreach]').find('input').prop('checked', true);
+		$('tr').has('div[id=informationRecordsOutreach]').find('input').trigger('click');
+		$('tr').has('div[id=informationRecordsOutreach]').next().find('textarea').val('');
+		$('tr').has('div[class=phiRequiredNotes]').find('tr:contains(\'Program Evaluation & Research\')').eq(1).find('input').prop('checked', false);
+		$('td').has('div[id=informationRecordsOutreach]').hide();
+		$('tr').has('div[id=informationRecordsOutreach]').next().hide();
+		$('tr:contains(\'Program Evaluation & Research (not for treatment purposes)\')').eq(2).hide();
+		console.log('Not Outreach');
+		if(formState == 'new'){
+
+		}
+	}
+}
+
+$('document').ready(function(){
+	try{
+		programID = window.parent[0].$('input[id=programId]').val();
+	}
+	catch{
+		if(programID == undefined){
+			programID = 130;
+		}
+	}
+
+	checkOutreach();
+	$('tr').has('div[class*=providerDriver]').find('select').change(checkOutreach);
 });
 
 ///Debug Test
