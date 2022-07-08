@@ -852,6 +852,7 @@ $('document').ready(function(){
 
 	//When CHA/OMAP add script to tooltips
 	$('tr').has('div[insuranceType=medicaid]').find('input').tooltip();
+	$('tr').has('div[id=recipientSenderType]').find('select').change(whenCHAOMAP);
 	$('tr').has('div[class*=payerDriver]').find('select').change(whenCHAOMAP);
 
 	setTimeout(function(){
