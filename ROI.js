@@ -860,6 +860,24 @@ $('document').ready(function(){
 //Auto populate message for Outreach and default to CHA/OMAP if not
 var programID;
 
+function checkProgram(){
+	if(programID != 138){
+		if($('tr').has('div[id=releaseType]').find('select').val() == '' && $('tr').has('div[id=recipientSenderType]').find('select').val() == ''){
+			$('tr').has('div[id=releaseType]').find('select').val($('tr').has('div[id=releaseType]').find('option').filter(function (){return $(this).html() == 'Release/Receive Records/Information';}).val());
+
+			$('tr').has('div[id=releaseType]').find('select').trigger('change');
+		
+			$('tr').has('div[id=recipientSenderType]').find('select').val($('tr').has('div[id=recipientSenderType]').find('option').filter(function (){return $(this).html() == 'Payer';}).val());
+
+			$('tr').has('div[id=recipientSenderType]').find('select').trigger('change');
+		
+			$('tr').has('div[class*=payerDriver]').find('select').val($('tr').has('div[class*=payerDriver]').find('option').filter(function (){return $(this).html() == 'CHA/OMAP';}).val());
+
+			$('tr').has('div[class*=payerDriver]').find('select').trigger('change');
+		}
+	}
+}
+
 function checkOutreach(){
 	if(programID == 138 && $('tr').has('div[class*=providerDriverText]').find('input').val() == 'PSU-Regional Research Institute for Human Services')
 	{
@@ -898,6 +916,7 @@ $('document').ready(function(){
 	}
 
 	checkOutreach();
+	checkProgram();
 	$('tr').has('div[class*=providerDriver]').find('select').change(checkOutreach);
 });
 
