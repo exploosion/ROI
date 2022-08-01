@@ -5,9 +5,6 @@ $('document').ready(function(){
             return this.getAttribute('title'); 
         }, 
     });  
-    
-    $('tr').find('div[id=releaseType]').attr('title', '[Your insurance company] requires that KBBH get a release of information for all records before they will pay your claims. This includes records related to both mental health and substance use disorder services. Without this information, [your insurance company] will not pay for the services you receive here.'); 
-    $('tr').find('div[id=releaseType]').tooltip();  
 });
 
 //Initialize display states and add event handlers for dropMatchId and dropdownShowHide
