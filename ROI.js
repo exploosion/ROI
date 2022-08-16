@@ -1,6 +1,6 @@
 //Tooltips
 $('document').ready(function(){ 
-    $('input, select, tr, td').tooltip({ 
+    $('input, select, tr, td, div').tooltip({ 
         content: function(){ 
             return this.getAttribute('title'); 
         }, 
@@ -851,6 +851,10 @@ $('document').ready(function(){
 	$('tr').has('div[insuranceType=medicaid]').find('input').tooltip();
 	$('tr').has('div[id=recipientSenderType]').find('select').change(whenCHAOMAP);
 	$('tr').has('div[class*=payerDriver]').find('select').change(whenCHAOMAP);
+
+	//Add tooltip for All SUD Records
+	$('#sudAll').attr('title', 'All Records include:\n<ul><li>SUD Assessment</li><li>SUD Diagnosis</li><li>SUD Treatment Plan</li><li>SUD Treatment Notes</li><li>Substance Use History</li></ul>');
+	$('#sudAll').tooltip();
 
 	setTimeout(function(){
 		whenCHAOMAP();
