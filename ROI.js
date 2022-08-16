@@ -842,7 +842,7 @@ function whenCHAOMAP(){
 $('document').ready(function(){
 	//Prevent input if CHA/OMAP
 	$('tr').has('div[insuranceType=medicaid]').find('input').click(function(e){
-		if($('tr').has('div[id=payerName]').find('input').val() == 'CHA/OMAP'){
+		if($('tr').has('div[id=payerName]').find('input').val() == 'CHA/OMAP' || $('tr').has('div[id=payerName]').find('input').val() == 'Medicare' || $('tr').has('div[id=payerName]').find('input').val() == 'Medicare (check only)'){
 			e.preventDefault();
 		}
 	});
