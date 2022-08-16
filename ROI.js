@@ -853,7 +853,7 @@ $('document').ready(function(){
 	$('tr').has('div[class*=payerDriver]').find('select').change(whenCHAOMAP);
 
 	//Add tooltip for All SUD Records
-	$('#sudAll').attr('title', 'All Records include:\n<ul><li>SUD Assessment</li><li>SUD Diagnosis</li><li>SUD Treatment Plan</li><li>SUD Treatment Notes</li><li>Substance Use History</li></ul>');
+	$('#sudAll').attr('title', 'SUD All Records include:\n<ul><li>SUD Assessment</li><li>SUD Diagnosis</li><li>SUD Treatment Plan</li><li>SUD Treatment Notes</li><li>Substance Use History</li></ul>');
 	$('#sudAll').tooltip();
 
 	setTimeout(function(){
