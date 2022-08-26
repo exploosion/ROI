@@ -864,7 +864,7 @@ $('document').ready(function(){
 //Auto populate message for Outreach and default to CHA/OMAP if not
 var programID;
 
-function checkProgram(){
+/*function checkProgram(){
 	if(programID != 138){
 		if($('tr').has('div[id=releaseType]').find('select').val() == '' && $('tr').has('div[id=recipientSenderType]').find('select').val() == ''){
 			$('tr').has('div[id=releaseType]').find('select').val($('tr').has('div[id=releaseType]').find('option').filter(function (){return $(this).html() == 'Release/Receive Records/Information';}).val());
@@ -878,6 +878,17 @@ function checkProgram(){
 			$('tr').has('div[class*=payerDriver]').find('select').val($('tr').has('div[class*=payerDriver]').find('option').filter(function (){return $(this).html() == 'CHA/OMAP';}).val());
 
 			$('tr').has('div[class*=payerDriver]').find('select').trigger('change');
+		}
+	}
+}*/
+
+function checkPayerDefault(){
+	if(programID != 138){
+		if($('#recipientSenderType').closest('table').parent().find('select').val() == $('#recipientSenderType').closest('table').parent().find('option').filter(function (){ return $(this).html() == 'Payer'}).val()){
+			if($('#payerName').closest('table').parent().find('input').val() == ''){
+				$('.payerDriver').closest('table').parent().find('select').val($('.payerDriver').closest('table').parent().find('option').filter(function (){ return $(this).html() == 'CHA/OMAP'}).val());
+				$('.payerDriver').closest('table').parent().find('select').trigger('change');
+			}
 		}
 	}
 }
@@ -919,8 +930,10 @@ $('document').ready(function(){
 		}
 	}
 
+	checkPayerDefault();
 	checkOutreach();
-	checkProgram();
+	//checkProgram();
+	$('#recipientSenderType').closest('table').parent().find('select').change(checkPayerDefault);
 	$('tr').has('div[class*=providerDriver]').find('select').change(checkOutreach);
 });
 
