@@ -22,17 +22,49 @@ $(document).ready(function(){
 	$('tr').has('div[class*=payerDriver]').next().find('td').css('display', 'none');
 	$('td').has('div[class*=providerDriver]').css('display', 'none');
 	$('tr').has('div[class*=providerDriver]').next().find('td').css('display', 'none');
-	$('tr').has('div[class*=driver]').find('select').change(dropMatchId);
-	$('tr').has('div[class*=driver]').find('select').change(dropdownShowHide);
-	$('tr').has('div[class*=hideDriver]').find('select').change(dropdownShowHide);
+	$('tr').has('div[class*=driver]').find('select').change(() => {
+		try{
+			dropMatchId();
+		}catch(error){
+			console.log(error);
+		}
+	});
+	$('tr').has('div[class*=driver]').find('select').change(() => {
+		try{
+			dropdownShowHide();
+		}catch(error){
+			console.log(error);
+		}
+	});
+	$('tr').has('div[class*=hideDriver]').find('select').change(() => {
+		try{
+			dropdownShowHide();
+		}catch(error){
+			console.log(error);
+		}
+	});
 	
-	dropMatchId();
-	dropdownShowHide();
+	try{
+		dropMatchId();
+	}catch(error){
+		console.log(error);
+	}
+	try{
+		dropdownShowHide();
+	}catch(error){
+		console.log(error);
+	}
 	
 	$('hr[class=line]').css('width', '100em');
 	
 	$('input[name=Complete]').prop('disabled', false);
-	$('input[name=Complete]').click(dropMatchId);
+	$('input[name=Complete]').click(() => {
+		try{
+			dropdownShowHide();
+		}catch(error){
+			console.log(error);
+		}
+	});
 });
 
 //Functions for Matching dropdown IDs and Running Show Hide
@@ -938,6 +970,39 @@ $('document').ready(function(){
 	$('tr').has('div[class*=providerDriver]').find('select').change(checkOutreach);
 });
 
+//Create Other Option for Payer
+function createOtherOption(){
+	let otherOption = document.createElement('option');
+	otherOption.value = 'other';
+	otherOption.text = 'Other Payer';
+
+	let payerSelect = document.querySelector('#payerSelect').closest('table').querySelector('select');
+
+	payerSelect.appendChild(otherOption);
+}
+
+function handleOtherOption(){
+	let payerSelect = document.querySelector('#payerSelect').closest('table').querySelector('select');
+
+	if(payerSelect.value === 'other'){
+		clearDropdowns();
+	}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	let payerSelect = document.querySelector('#payerSelect').closest('table').querySelector('select');
+	
+	createOtherOption();
+
+	document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('change', handleOtherOption);
+	document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('mouseleave', handleOtherOption);
+});
+
+//Make uneditable, remove dropdown arrow
+function makeDropDownReadOnly(){
+    $('tr').has('div[class*=passenger]').find('select').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+}
+
 ///Debug Test
 function debugTest(){
     $('td').has('div[class*=hideMe]').css('display', 'inline-block');
@@ -972,9 +1037,4 @@ function debugTest(){
         $('tr').has('div[class*=payerDriver]').find('select').val('');
         $('tr').has('div[class*=payerPassenger]').find('select').val('');
     }
-}
-
-//Make uneditable, remove dropdown arrow
-function makeDropDownReadOnly(){
-    $('tr').has('div[class*=passenger]').find('select').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
 }
