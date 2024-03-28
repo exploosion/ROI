@@ -1,3 +1,18 @@
+if(typeof visibilty != 'function'){
+	if (typeof window.include !== "undefined") {
+		window.include = function (file){
+		var script = document.createElement('script');
+		script.src = file;
+		script.type = 'text/javascript';
+		script.defer = true;
+			
+		document.getElementsByTagName('head').item(0).appendChild(script);
+		}
+	}
+  
+	include('https://cdn.jsdelivr.net/gh/KlamathBasinBehavioralHealth/CredibleUtilities@21229c2/Utilities/visibility.js');
+}
+
 //Tooltips
 $('document').ready(function(){ 
     $('input, select, tr, td, div').tooltip({ 
@@ -986,6 +1001,22 @@ function handleOtherOption(){
 
 	if(payerSelect.value === 'other'){
 		clearDropdowns();
+		document.querySelector('#payerName').closest('table').querySelector('input').value = '';
+		[...document.querySelectorAll('.payerPassengerText')].forEach((passenger) => {
+			passenger.closest('table').querySelector('input').value = '';
+		});
+		document.querySelector('.payerEmail').closest('table').querySelector('input').value = '';
+		visibility('hide', '#payerName');
+		visibility('hide', '.payerPassengerText');
+		visibility('hide', '.payerEmail');
+		visibility('show', '.requiredPassenger');
+		visibility('show', '#otherAddress2');
+	}else if(payerSelect.value != 'other' && payerSelect.value != ''){
+		visibility('show', '#payerName');
+		visibility('show', '.payerPassengerText');
+		visibility('show', '.payerEmail');
+		visibility('hide', '.requiredPassenger');
+		visibility('hide', '#otherAddress2');
 	}
 }
 
