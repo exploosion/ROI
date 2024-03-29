@@ -78,13 +78,13 @@ $(document).ready(function(){
 	$('hr[class=line]').css('width', '100em');
 	
 	$('input[name=Complete]').prop('disabled', false);
-	$('input[name=Complete]').click(() => {
+	/* $('input[name=Complete]').click(() => {
 		try{
 			dropdownShowHide();
 		}catch(error){
 			console.log(error);
 		}
-	});
+	}); */
 });
 
 //Functions for Matching dropdown IDs and Running Show Hide
