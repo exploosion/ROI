@@ -1,5 +1,5 @@
 if(typeof visibility != 'function'){
-	if (typeof window.include === "undefined") {
+	if (typeof include === "undefined") {
 		window.include = function (file){
 		var script = document.createElement('script');
 		script.src = file;
