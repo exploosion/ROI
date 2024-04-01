@@ -158,6 +158,18 @@ function dropdownShowHide ()
 		/* $('td').has('div[class*=payerPassenger]').css('display', 'inline-block');
 		$('tr').has('div[class*=payerPassenger]').next().find('td').css('display', 'inline');	 */
 		visibility('show', '.payerPassenger');
+		if(payerSelect.value === 'other'){
+			clearDropdowns();
+			document.querySelector('#payerName').closest('table').querySelector('input').value = '';
+			[...document.querySelectorAll('.payerPassengerText')].forEach((passenger) => {
+				passenger.closest('table').querySelector('input').value = '';
+			});
+			document.querySelector('.payerEmail').closest('table').querySelector('input').value = '';
+			visibility('hide', '#payerName');
+			visibility('hide', '.payerPassengerText');
+			visibility('hide', '.payerEmail');
+			visibility('show', '.hideMe');
+		}
 	}
 	else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Provider\')').attr('value'))
 	{
@@ -1076,8 +1088,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	createOtherOption();
 
-	document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('change', handleOtherOption);
-	document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('mouseleave', handleOtherOption);
+	/* document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('change', handleOtherOption);
+	document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('mouseleave', handleOtherOption); */
 });
 
 //Make uneditable, remove dropdown arrow
