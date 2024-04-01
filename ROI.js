@@ -346,18 +346,23 @@ function checkRestrictions(){
 	requireHidden(false, 'languageRestrictionRequired');
 	visibility('hide', '.languageRestrictionRequired');
 		
-	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[1].checked)
-	{
+	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[0].checked){
+		requireHidden(false, 'readingRestrictionRequired');
+		visibility('hide', '.readingRestrictionRequired');
+		requireHidden(false, 'writingRestrictionRequired');
+		visibility('hide', '.writingRestrictionRequired');
+		requireHidden(false, 'languageRestrictionRequired');
+		visibility('hide', '.languageRestrictionRequired');
+	}
+	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[1].checked){
 		requireHidden(true, 'readingRestrictionRequired');
 		visibility('show', '.readingRestrictionRequired');
 	}
-	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[2].checked)
-	{
+	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[2].checked){
 		requireHidden(true, 'writingRestrictionRequired');
 		visibility('show', '.writingRestrictionRequired');
 	}
-	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[3].checked)
-	{
+	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[3].checked){
 		requireHidden(true, 'languageRestrictionRequired');
 		visibility('show', '.languageRestrictionRequired');
 	}
