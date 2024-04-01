@@ -585,27 +585,33 @@ $(document).ready(function()
 $(document).ready(function() 
 {
 	//$('td').has('div[class*=readingRestriction]').hide();
+	visibility('hide', '.readingRestriction');
 	visibility('hide', '.readingRestrictionRequired');
 	//$('td').has('div[class*=writingRestriction]').hide();
+	visibility('hide', '.writingRestriction');
 	visibility('hide', '.writingRestrictionRequired');
 	//$('td').has('div[class*=languageRestriction]').hide();
+	visibility('hide', '.languageRestriction');
 	visibility('hide', '.languageRestrictionRequired');
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(1).prop('checked'))
 	{
 		//$('td').has('div[class*=readingRestriction]').show();
+		visibility('show', '.readingRestriction');
 		visibility('show', '.readingRestrictionRequired');
 	}
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).prop('checked'))
 	{
 		//$('td').has('div[class*=writingRestriction]').show();
+		visibility('show', '.writingRestriction');
 		visibility('show', '.writingRestrictionRequired');
 	}
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).prop('checked'))
 	{
 		//$('td').has('div[class*=languageRestriction]').show();
+		visibility('show', '.languageRestriction');
 		visibility('show', '.languageRestrictionRequired');
 	}
 			
@@ -616,10 +622,13 @@ $(document).ready(function()
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).prop('checked', false);
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).prop('checked', false);
 			//$('td').has('div[class*=readingRestriction]').hide();
-			visibility('hide', '.languageRestrictionRequired');
+			visibility('hide', '.readingRestriction');
+			visibility('hide', '.readingRestrictionRequired');
 			//$('td').has('div[class*=writingRestriction]').hide();
-			visibility('hide', '.languageRestrictionRequired');
+			visibility('hide', '.writingRestriction');
+			visibility('hide', '.writingRestrictionRequired');
 			//$('td').has('div[class*=languageRestriction]').hide();
+			visibility('hide', '.languageRestriction');
 			visibility('hide', '.languageRestrictionRequired');
 		}
 	});
@@ -628,11 +637,13 @@ $(document).ready(function()
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
 			//$('td').has('div[class*=readingRestriction]').show();
+			visibility('show', '.readingRestriction');
 			visibility('show', '.readingRestrictionRequired');
 		}
 		else
 		{
 			//$('td').has('div[class*=readingRestriction]').hide();
+			visibility('hide', '.readingRestriction');
 			visibility('hide', '.readingRestrictionRequired');
 		}
 	});
@@ -641,11 +652,13 @@ $(document).ready(function()
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
 			//$('td').has('div[class*=writingRestriction]').show();
+			visibility('show', '.writingRestriction');
 			visibility('show', '.writingRestrictionRequired');
 		}
 		else
 		{
 			//$('td').has('div[class*=writingRestriction]').hide();
+			visibility('hide', '.writingRestriction');
 			visibility('hide', '.writingRestrictionRequired');
 		}
 	});
@@ -654,11 +667,13 @@ $(document).ready(function()
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
 			//$('td').has('div[class*=languageRestriction]').show();
+			visibility('show', '.languageRestriction');
 			visibility('show', '.languageRestrictionRequired');
 		}
 		else
 		{
 			//$('td').has('div[class*=languageRestriction]').hide();
+			visibility('hide', '.languageRestriction');
 			visibility('hide', '.languageRestrictionRequired');
 		}
 	});
