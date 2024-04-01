@@ -316,31 +316,13 @@ $(document).ready(function(){
 		requireHidden( $('tr').has('div[class*=verifiedRequiredDriver]').find('select').attr('value') != $('tr').has('div[class*=verifiedRequiredDriver]').find('option:contains(\'Parent\')').attr('value')
 , 			'verifiedRequired');
 	});
-	$('tr').has('div[class*=restrictionRequiredDriver]').find('input').change(function(event)
-	{
-		requireHidden(false, 'readingRestrictionRequired');
-		visibility('hide', '.readingRestrictionRequired');
-		requireHidden(false, 'writingRestrictionRequired');
-		visibility('hide', '.writingRestrictionRequired');
-		requireHidden(false, 'languageRestrictionRequired');
-		visibility('hide', '.languageRestrictionRequired');
-			
-		if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[1].checked)
-		{
-			requireHidden(true, 'readingRestrictionRequired');
-			visibility('show', '.readingRestrictionRequired');
-		}
-		if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[2].checked)
-		{
-			requireHidden(true, 'writingRestrictionRequired');
-			visibility('show', '.writingRestrictionRequired');
-		}
-		if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[3].checked)
-		{
-			requireHidden(true, 'languageRestrictionRequired');
-			visibility('show', '.languageRestrictionRequired');
-		}
+
+	checkRestrictions();
+
+	$('tr').has('div[class*=restrictionRequiredDriver]').find('input').change(function(event){
+		checkRestrictions();
 	});
+	
 	$('tr').has('div[class*=revocationRequiredDriver]').find('input').change(function()
 	{
 		requireHidden($('tr').has('div[class*=revocationRequiredDriver]').find('input').prop('checked'), 'voidType');
@@ -355,6 +337,31 @@ $(document).ready(function(){
 		dropdownShowHide();
 	}, 1000); 
 });
+
+function checkRestrictions(){
+	requireHidden(false, 'readingRestrictionRequired');
+	visibility('hide', '.readingRestrictionRequired');
+	requireHidden(false, 'writingRestrictionRequired');
+	visibility('hide', '.writingRestrictionRequired');
+	requireHidden(false, 'languageRestrictionRequired');
+	visibility('hide', '.languageRestrictionRequired');
+		
+	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[1].checked)
+	{
+		requireHidden(true, 'readingRestrictionRequired');
+		visibility('show', '.readingRestrictionRequired');
+	}
+	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[2].checked)
+	{
+		requireHidden(true, 'writingRestrictionRequired');
+		visibility('show', '.writingRestrictionRequired');
+	}
+	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[3].checked)
+	{
+		requireHidden(true, 'languageRestrictionRequired');
+		visibility('show', '.languageRestrictionRequired');
+	}
+}
 
 //Event handlers for mandatory hidden note fields
 $(document).ready(function(){
