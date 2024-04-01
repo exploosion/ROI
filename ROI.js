@@ -1087,6 +1087,7 @@ function handleOtherOption(){
 		visibility('hide', '.payerPassengerText');
 		visibility('hide', '.payerEmail');
 		visibility('show', '.hideMe');
+		visibility('show', '#otherName', true);
 	}else if(payerSelect.value != 'other' && payerSelect.value != ''){
 		visibility('show', '#payerName');
 		visibility('show', '.payerPassengerText');
