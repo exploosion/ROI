@@ -25,8 +25,10 @@ $('document').ready(function(){
 //Initialize display states and add event handlers for dropMatchId and dropdownShowHide
 $(document).ready(function(){
 	$('tr').has('div[class*=passenger]').find('select').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-	$('tr').has('div[class*=payerDriverText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');$('tr').has('div[class*=providerDriverText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-	$('tr').has('div[class*=payerPassengerText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');$('tr').has('div[class*=providerPassengerText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+	$('tr').has('div[class*=payerDriverText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+	$('tr').has('div[class*=providerDriverText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+	$('tr').has('div[class*=payerPassengerText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+	$('tr').has('div[class*=providerPassengerText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
 		
 	/* $('td').has('div[class*=passenger]').css('display', 'none');
 	$('tr').has('div[class*=passenger]').next().find('td').css('display', 'none'); */
@@ -122,18 +124,18 @@ function dropMatchId ()
 
 function dropdownShowHide ()
 {
-	/* $('td').has('div[class*=hideMe]').css('display', 'none');
-	$('tr').has('div[class*=hideMe]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.hideMe');
+	
 	/* $('td').has('div[class*=payerDriver]').css('display', 'none');
 	$('tr').has('div[class*=payerDriver]').next().find('td').css('display', 'none'); */
 	visibility('hide', '.payerDriver');
+	visibility('hide', '.payerDriverText');
 	/* $('td').has('div[class*=payerPassenger]').css('display', 'none');
 	$('tr').has('div[class*=payerPassenger]').next().find('td').css('display', 'none'); */
 	visibility('hide', '.payerPassenger');
 	/* $('td').has('div[class*=providerDriver]').css('display', 'none');
 	$('tr').has('div[class*=providerDriver]').next().find('td').css('display', 'none'); */
 	visibility('hide', '.providerDriver');
+	visibility('hide', '.providerDriverText');
 	/* $('td').has('div[class*=providerPassenger]').css('display', 'none');
 	$('tr').has('div[class*=providerPassenger]').next().find('td').css('display', 'none'); */
 	visibility('hide', '.providerPassenger');
@@ -143,6 +145,9 @@ function dropdownShowHide ()
 	/* $('td').has('div[class*=providerPassengerText]').css('display', 'none');
 	$('tr').has('div[class*=providerPassengerText]').next().find('td').css('display', 'none'); */
 	visibility('hide', '.providerPassengerText');
+	/* $('td').has('div[class*=hideMe]').css('display', 'none');
+	$('tr').has('div[class*=hideMe]').next().find('td').css('display', 'none'); */
+	visibility('hide', '.hideMe');
 		
 	if($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Other\')').attr('value'))
 	{
@@ -165,7 +170,6 @@ function dropdownShowHide ()
 				passenger.closest('table').querySelector('input').value = '';
 			});
 			document.querySelector('.payerEmail').closest('table').querySelector('input').value = '';
-			visibility('hide', '#payerName');
 			visibility('hide', '.payerPassengerText');
 			visibility('hide', '.payerEmail');
 			visibility('show', '.hideMe');
