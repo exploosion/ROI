@@ -157,6 +157,7 @@ function dropdownShowHide ()
 	}
 	else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Payer\')').attr('value'))
 	{
+		visibility('show', '#payerName');
 		/* $('td').has('div[class*=payerDriver]').css('display', 'inline-block');
 		$('tr').has('div[class*=payerDriver]').next().find('td').css('display', 'inline'); */
 		visibility('show', '.payerDriver');
@@ -170,6 +171,7 @@ function dropdownShowHide ()
 				passenger.closest('table').querySelector('input').value = '';
 			});
 			document.querySelector('.payerEmail').closest('table').querySelector('input').value = '';
+			visibility('hide', '#payerName');
 			visibility('hide', '.payerPassengerText');
 			visibility('hide', '.payerEmail');
 			visibility('show', '.hideMe');
@@ -177,6 +179,7 @@ function dropdownShowHide ()
 	}
 	else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Provider\')').attr('value'))
 	{
+		visibility('show', '#providerName');
 		/* $('td').has('div[class*=providerDriver]').css('display', 'inline-block');
 		$('tr').has('div[class*=providerDriver]').next().find('td').css('display', 'inline'); */
 		visibility('show', '.providerDriver');
