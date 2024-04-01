@@ -807,12 +807,12 @@ function checkSUD(){
 		$('tr').has('div[id=sudOption]').find('input').eq(4).prop('checked', false);
 		/* $('td').has('div[id=sudOption]').hide();
 		$('tr').has('div[id=sudOption]').next().find('td').hide(); */
-		visibility('hide', '#sudOption');
+		visibility('hide', '.sudOptions');
 	}
 	else{
 		/* $('td').has('div[id=sudOption]').show();
 		$('tr').has('div[id=sudOption]').next().find('td').show(); */
-		visibility('show', '#sudOption');
+		visibility('show', '.sudOptions');
 	}
 	
 	if($('tr').has('div[id=sudOption]').find('input').eq(0).prop('checked') || $('tr').has('div[id=sudOption]').find('input').eq(1).prop('checked') || $('tr').has('div[id=sudOption]').find('input').eq(2).prop('checked') || $('tr').has('div[id=sudOption]').find('input').eq(3).prop('checked') || $('tr').has('div[id=sudOption]').find('input').eq(4).prop('checked')){
