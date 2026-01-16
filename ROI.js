@@ -84,13 +84,13 @@ function dropMatchId ()
 
 function dropdownShowHide ()
 {
-	visibility('hide', '#payerSelect');
+	//visibility('hide', '#payerSelect');
 
-	visibility('hide', '.payerPassenger');
+	//visibility('hide', '.payerPassenger');
 
-	visibility('hide', '#providerSelect');
+	//visibility('hide', '#providerSelect');
 
-	visibility('hide', '.providerPassenger');
+	//visibility('hide', '.providerPassenger');
 }
 
 //Clearing dropdowns on form submit
