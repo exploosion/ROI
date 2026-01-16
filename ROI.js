@@ -113,7 +113,7 @@ function clearDropdowns ()
 }
 
 
-
+/*
 //Event handlers for mandatory hidden questions
 $(document).ready(function(){
 	$('tr').has('div[class*=guardianRequiredDriver]').find('input').change(function(event)
@@ -753,24 +753,6 @@ $('document').ready(function(){
 //Auto populate message for Outreach and default to CHA/OMAP if not
 var programID;
 
-/*function checkProgram(){
-	if(programID != 138){
-		if($('tr').has('div[id=releaseType]').find('select').val() == '' && $('tr').has('div[id=recipientSenderType]').find('select').val() == ''){
-			$('tr').has('div[id=releaseType]').find('select').val($('tr').has('div[id=releaseType]').find('option').filter(function (){return $(this).html() == 'Release/Receive Records/Information';}).val());
-
-			$('tr').has('div[id=releaseType]').find('select').trigger('change');
-		
-			$('tr').has('div[id=recipientSenderType]').find('select').val($('tr').has('div[id=recipientSenderType]').find('option').filter(function (){return $(this).html() == 'Payer';}).val());
-
-			$('tr').has('div[id=recipientSenderType]').find('select').trigger('change');
-		
-			$('tr').has('div[class*=payerDriver]').find('select').val($('tr').has('div[class*=payerDriver]').find('option').filter(function (){return $(this).html() == 'CHA/OMAP';}).val());
-
-			$('tr').has('div[class*=payerDriver]').find('select').trigger('change');
-		}
-	}
-}*/
-
 function checkPayerDefault(){
 	if(programID != 138){
 		if($('#recipientSenderType').closest('table').parent().find('select').val() == $('#recipientSenderType').closest('table').parent().find('option').filter(function (){ return $(this).html() == 'Payer'}).val()){
@@ -876,27 +858,17 @@ function makeDropDownReadOnly(){
 
 ///Debug Test
 function debugTest(){
-    /* $('td').has('div[class*=hideMe]').css('display', 'inline-block');
-    $('tr').has('div[class*=hideMe]').next().find('td').css('display', 'inline'); */
 	visibility('show', '.hideMe');
-    /* $('td').has('div[class*=payerDriver]').css('display', 'inline-block');
-    $('tr').has('div[class*=payerDriver]').next().find('td').css('display', 'inline'); */
+
 	visibility('show', '.payerDriver');
-    /* $('td').has('div[class*=payerPassenger]').css('display', 'inline-block');
-    $('tr').has('div[class*=payerPassenger]').next().find('td').css('display', 'inline'); */
+
 	visibility('show', '.payerPassenger');
-    /* $('td').has('div[class*=providerDriver]').css('display', 'inline-block');
-    $('tr').has('div[class*=providerDriver]').next().find('td').css('display', 'inline'); */
+
 	visibility('show', '.providerDriver');
-    /* $('td').has('div[class*=providerPassenger]').css('display', 'inline-block');
-    $('tr').has('div[class*=providerPassenger]').next().find('td').css('display', 'inline'); */
+
 	visibility('show', '.providerPassenger');
-    /* $('td').has('div[class*=payerPassengerText]').css('display', 'inline-block');
-    $('tr').has('div[class*=payerPassengerText]').next().find('td').css('display', 'inline'); */
-	visibility('show', '.payerPassengerText');
-    /* $('td').has('div[class*=providerPassengerText]').css('display', 'inline-block');
-    $('tr').has('div[class*=providerPassengerText]').next().find('td').css('display', 'inline'); */
-	visibility('show', '.providerPassengerText');
+
+
 
     if($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Other\')').attr('value'))
     {
@@ -915,4 +887,4 @@ function debugTest(){
         $('tr').has('div[class*=payerDriver]').find('select').val('');
         $('tr').has('div[class*=payerPassenger]').find('select').val('');
     }
-}
+}*/
