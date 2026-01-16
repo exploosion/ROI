@@ -1,27 +1,40 @@
 
 //Initialize display states and add event handlers for dropMatchId and dropdownShowHide
-$(document).ready(function(){
+
+document.addEventListener('DOMContentLoaded', (event) => { 
 	try{
-		$('tr').has('div[class*=passenger]').find('select').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+		[...document.querySelectorAll('.passenger')].forEach((passenger) => {
+			passenger.closest('table').querySelector('select').setAttribute(
+				'style',
+				'-webkit-appearance: none; text-indent: 1px; pointer-events: none;'
+			);
+		});
 	}catch(error){
 
 	}
 
 	$('tr').has('div[class*=driver]').find('select').change(() => {
+	document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('change', () => {
 		try{
 			dropMatchId();
 		}catch(error){
 			console.log(error);
 		}
-	});
-	$('tr').has('div[class*=driver]').find('select').change(() => {
 		try{
 			dropdownShowHide();
 		}catch(error){
 			console.log(error);
 		}
 	});
-	$('tr').has('div[class*=hideDriver]').find('select').change(() => {
+
+	$('tr').has('div[class*=driver]').find('select').change(() => {
+		document.querySelector('#providerSelect').closest('table').querySelector('select').addEventListener('change', () => {
+			try{
+				dropMatchId();
+			}catch(error){
+				console.log(error);
+			}
+		});
 		try{
 			dropdownShowHide();
 		}catch(error){
@@ -40,9 +53,13 @@ $(document).ready(function(){
 		console.log(error);
 	}
 	
-	$('hr[class=line]').css('width', '100em');
+	document.querySelectorAll('hr.line').forEach(hr => {
+		hr.style.width = '100em';
+	});
 	
-	$('input[name=Complete]').prop('disabled', false);
+	document.querySelectorAll('input[name="Complete"]').forEach(input => {
+		input.disabled = false;
+	});
 });
 
 //Functions for Matching dropdown IDs and Running Show Hide
@@ -79,37 +96,9 @@ function dropdownShowHide ()
 }
 
 //Clearing dropdowns on form submit
-function clearDropdowns ()
+function clearDropdowns()
 {	
-	if($('tr').has('div[class*=payerDriverText]').find('input').val())
-	{
-		$('tr').has('div[class*=payerDriver]').find('select').val('');
-		$('tr').has('div[class*=payerPassenger]').find('select').val('');
-	}
-	
-	if($('tr').has('div[class*=providerDriverText]').find('input').val())
-	{
-		$('tr').has('div[class*=providerDriver]').find('select').val('');
-		$('tr').has('div[class*=providerPassenger]').find('select').val('');
-	}	
-	
-	if($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Other\')').attr('value'))
-	{
-		$('tr').has('div[class*=payerDriver]').find('select').val('');
-		$('tr').has('div[class*=payerPassenger]').find('select').val('');
-		$('tr').has('div[class*=providerDriver]').find('select').val('');
-		$('tr').has('div[class*=providerPassenger]').find('select').val('');
-	}
-	else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Payer\')').attr('value'))
-	{
-		$('tr').has('div[class*=providerDriver]').find('select').val('');
-		$('tr').has('div[class*=providerPassenger]').find('select').val('');
-	}
-	else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Provider\')').attr('value'))
-	{
-		$('tr').has('div[class*=payerDriver]').find('select').val('');
-		$('tr').has('div[class*=payerPassenger]').find('select').val('');
-	}
+	console.log('Plaseholder.');
 }
 
 
