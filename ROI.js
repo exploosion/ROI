@@ -3,28 +3,9 @@
 $(document).ready(function(){
 	try{
 		$('tr').has('div[class*=passenger]').find('select').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-		//$('tr').has('div[class*=payerDriverText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-		//$('tr').has('div[class*=providerDriverText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-		//$('tr').has('div[class*=payerPassengerText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-		//$('tr').has('div[class*=providerPassengerText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
 	}catch(error){
 
 	}
-	
-		
-	/* $('td').has('div[class*=passenger]').css('display', 'none');
-	$('tr').has('div[class*=passenger]').next().find('td').css('display', 'none'); */
-	//visibility('hide', '.passenger');
-	
-	/* $('td').has('div[class*=hideMe]').css('display', 'none');
-	$('tr').has('div[class*=hideMe]').next().find('td').css('display', 'none'); */
-	//visibility('hide', '.hideMe');
-	/* $('td').has('div[class*=payerDriver]').css('display', 'none');
-	$('tr').has('div[class*=payerDriver]').next().find('td').css('display', 'none'); */
-	//visibility('hide', '.payerDriver');
-	/* $('td').has('div[class*=providerDriver]').css('display', 'none');
-	$('tr').has('div[class*=providerDriver]').next().find('td').css('display', 'none'); */
-	//visibility('hide', '.providerDriver');
 
 	$('tr').has('div[class*=driver]').find('select').change(() => {
 		try{
@@ -62,13 +43,6 @@ $(document).ready(function(){
 	$('hr[class=line]').css('width', '100em');
 	
 	$('input[name=Complete]').prop('disabled', false);
-	/* $('input[name=Complete]').click(() => {
-		try{
-			dropdownShowHide();
-		}catch(error){
-			console.log(error);
-		}
-	}); */
 });
 
 //Functions for Matching dropdown IDs and Running Show Hide
@@ -90,97 +64,18 @@ function dropMatchId ()
 		requireField('#providerSelect', false);
 	}
 
-	/*if($('tr').has('div[class*=payerDriver]').find('select').val())
-	{
-		$('tr').has('div[class*=payerPassenger]').find('select').val($('tr').has('div[class*=payerDriver]').find('select').val());
-		
-		$('tr').has('div[class*=payerDriverText]').find('input').val($('tr').has('div[class*=payerDriver]').find('option[value=' + $('tr').has('div[class*=payerDriver]').find('select').val() + ']').text());
-		for(let count = 0; count < $('tr').has('div[class*=payerPassenger]').find('select').length; count++)
-		{
-			$('tr').has('div[class*=payerPassengerText]').find('input')[count].value = $('tr').has('div[class*=payerPassenger]').find('option[value=' + $('tr').has('div[class*=payerPassenger]').find('select')[count].value + ']')[count].text;
-		}
-		
-		requireHidden(false, 'payerDriver');
-	}
-	
-	if($('tr').has('div[class*=providerDriver]').find('select').val())
-	{
-		$('tr').has('div[class*=providerPassenger]').find('select').val($('tr').has('div[class*=providerDriver]').find('select').val());
-		
-		$('tr').has('div[class*=providerDriverText]').find('input').val($('tr').has('div[class*=providerDriver]').find('option[value=' + $('tr').has('div[class*=providerDriver]').find('select').val() + ']').text());
-		for(let count = 0; count < $('tr').has('div[class*=providerPassenger]').find('select').length; count++)
-		{
-			$('tr').has('div[class*=providerPassengerText]').find('input')[count].value = $('tr').has('div[class*=providerPassenger]').find('option[value=' + $('tr').has('div[class*=providerPassenger]').find('select')[count].value + ']')[count].text;
-		}
-		
-		requireHidden(false, 'providerDriver');
-	}*/
-
 	clearDropdowns();
 }
 
 function dropdownShowHide ()
 {
-	
-	/* $('td').has('div[class*=payerDriver]').css('display', 'none');
-	$('tr').has('div[class*=payerDriver]').next().find('td').css('display', 'none'); */
 	visibility('hide', '#payerSelect');
-	//visibility('hide', '.payerDriverText');
-	/* $('td').has('div[class*=payerPassenger]').css('display', 'none');
-	$('tr').has('div[class*=payerPassenger]').next().find('td').css('display', 'none'); */
+
 	visibility('hide', '.payerPassenger');
-	/* $('td').has('div[class*=providerDriver]').css('display', 'none');
-	$('tr').has('div[class*=providerDriver]').next().find('td').css('display', 'none'); */
+
 	visibility('hide', '#providerSelect');
-	//visibility('hide', '.providerDriverText');
-	/* $('td').has('div[class*=providerPassenger]').css('display', 'none');
-	$('tr').has('div[class*=providerPassenger]').next().find('td').css('display', 'none'); */
+
 	visibility('hide', '.providerPassenger');
-	/* $('td').has('div[class*=payerPassengerText]').css('display', 'none');
-	$('tr').has('div[class*=payerPassengerText]').next().find('td').css('display', 'none'); */
-	//visibility('hide', '.payerPassengerText');
-	/* $('td').has('div[class*=providerPassengerText]').css('display', 'none');
-	$('tr').has('div[class*=providerPassengerText]').next().find('td').css('display', 'none'); */
-	//visibility('hide', '.providerPassengerText');
-	/* $('td').has('div[class*=hideMe]').css('display', 'none');
-	$('tr').has('div[class*=hideMe]').next().find('td').css('display', 'none'); */
-	//visibility('hide', '.hideMe');
-		
-	/* if($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Other\')').attr('value'))
-	{
-		visibility('show', '.hideMe');
-	}
-	else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Payer\')').attr('value'))
-	{
-		visibility('show', '#payerName');
-		visibility('show', '.payerDriver');
-		visibility('show', '.payerPassenger');
-	}
-	else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Provider\')').attr('value'))
-	{
-		visibility('show', '#providerName');
-		visibility('show', '.providerDriver');
-		visibility('show', '.providerPassenger');
-	}
-	
-	if($('tr').has('div[class*=payerDriverText]').find('input').val())
-	{
-		visibility('show', '.payerPassengerText');
-	}
-	else if($('tr').has('div[class*=providerDriverText]').find('input').val())
-	{
-		visibility('show', '.providerPassengerText');
-	}
-	
-	if($('tr').has('div[class*=payerEmail]').find('input').val())
-	{
-		visibility('show', '.payerEmail');
-	}
-	else if($('tr').has('div[class*=providerSpecificIndividual]').find('input').val())
-	{
-		visibility('show', '.providerSpecificIndividual');
-	}
-	visibility('hide', '.goAway'); */
 }
 
 //Clearing dropdowns on form submit
@@ -310,12 +205,8 @@ $(document).ready(function(){
 });
 
 function checkVoid(){
-	/* $('td').has('div[id=reason]').css('display', 'none');
-	$('tr').has('div[id=reason]').next().find('td').css('display', 'none'); */
 	visibility('hide', '#reason');
 	if($('tr').has('div[class=revocationRequiredDriver]').find('input').prop('checked')){
-		/* $('td').has('div[id=reason]').css('display', 'inline');
-		$('tr').has('div[id=reason]').next().find('td').css('display', 'inline'); */
 		visibility('show', '#reason');
 	}
 }
@@ -328,8 +219,6 @@ function checkHidden ()
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);
 		requireNotes('#voidType', false);
-		/* $('td').has('div[class*=revocationDetails]').css('display', 'none');
-		$('tr').has('div[class*=revocationDetails]').next().find('td').css('display', 'none'); */
 		visibility('hide', '.revocationDetails');	
 	}
 	else if (($('tr').has('div[class*=voidType]').find('option[value=\'' + $('tr').has('div[class*=voidType]').find('select').val() + '\']').text()) == 'Invalid')     
@@ -338,8 +227,6 @@ function checkHidden ()
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', true);	
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);
 		requireNotes('#voidType', true);
-		/* $('td').has('div[class*=revocationDetails]').css('display', 'none');
-		$('tr').has('div[class*=revocationDetails]').next().find('td').css('display', 'none'); */
 		visibility('hide', '.revocationDetails');	
 	}
 	else if (($('tr').has('div[class*=voidType]').find('option[value=\'' + $('tr').has('div[class*=voidType]').find('select').val() + '\']').text()) == 'Revoked')     
@@ -348,8 +235,6 @@ function checkHidden ()
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', true);		
 		requireNotes('#voidType', false);
-		/* $('td').has('div[class*=revocationDetails]').css('display', 'inline');
-		$('tr').has('div[class*=revocationDetails]').next().find('td').css('display', 'inline-block'); */
 		visibility('show', '.revocationDetails');
 	}	
 	else
@@ -358,8 +243,6 @@ function checkHidden ()
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);   
 		requireNotes('voidType', false);
-		/* $('td').has('div[class*=revocationDetails]').css('display', 'none');
-		$('tr').has('div[class*=revocationDetails]').next().find('td').css('display', 'none'); */
 		visibility('hide', '.revocationDetails');
 	}
 }
@@ -421,12 +304,8 @@ var clearCounter;
 
 function clearPayerPassengerText ()
 {
-	/* $('td').has('div[class*=payerBegone]').css('display', 'none');
-	$('tr').has('div[class*=payerBegone]').next().find('td').css('display', 'none'); */
 	visibility('hide', '.payerBegone');
-	/* $('td').has('div[class*=payerPassengerText]').css('display', 'none');
-	$('tr').has('div[class*=payerPassengerText]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.payerPassengerText');
+	//visibility('hide', '.payerPassengerText');
 	$('tr').has('div[class*=payerDriverText]').find('input').val('');
 	for(clearCounter = 0; clearCounter < $('tr').has('div[class*=payerPassengerText]').find('input').length; clearCounter++)
 	{
@@ -437,12 +316,8 @@ function clearPayerPassengerText ()
 
 function clearProviderPassengerText ()
 {
-	/* $('td').has('div[class*=providerBegone]').css('display', 'none');
-	$('tr').has('div[class*=providerBegone]').next().find('td').css('display', 'none'); */
 	visibility('hide', '.providerBegone');
-	/* $('td').has('div[class*=providerPassengerText]').css('display', 'none');
-	$('tr').has('div[class*=providerPassengerText]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.providerPassengerText');
+	//visibility('hide', '.providerPassengerText');
 	$('tr').has('div[class*=providerDriverText]').find('input').val('');
 	$('tr').has('div[class*=providerSpecificIndividual]').find('input').val('');
 	for(clearCounter = 0; clearCounter < $('tr').has('div[class*=providerPassengerText]').find('input').length; clearCounter++)
@@ -496,33 +371,27 @@ $(document).ready(function()
 //Restrictions checkbox logic
 $(document).ready(function() 
 {
-	//$('td').has('div[class*=readingRestriction]').hide();
 	visibility('hide', '.readingRestriction');
 	visibility('hide', '.readingRestrictionRequired');
-	//$('td').has('div[class*=writingRestriction]').hide();
 	visibility('hide', '.writingRestriction');
 	visibility('hide', '.writingRestrictionRequired');
-	//$('td').has('div[class*=languageRestriction]').hide();
 	visibility('hide', '.languageRestriction');
 	visibility('hide', '.languageRestrictionRequired');
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(1).prop('checked'))
 	{
-		//$('td').has('div[class*=readingRestriction]').show();
 		visibility('show', '.readingRestriction');
 		visibility('show', '.readingRestrictionRequired');
 	}
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).prop('checked'))
 	{
-		//$('td').has('div[class*=writingRestriction]').show();
 		visibility('show', '.writingRestriction');
 		visibility('show', '.writingRestrictionRequired');
 	}
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).prop('checked'))
 	{
-		//$('td').has('div[class*=languageRestriction]').show();
 		visibility('show', '.languageRestriction');
 		visibility('show', '.languageRestrictionRequired');
 	}
@@ -533,13 +402,10 @@ $(document).ready(function()
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(1).prop('checked', false);
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).prop('checked', false);
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).prop('checked', false);
-			//$('td').has('div[class*=readingRestriction]').hide();
 			visibility('hide', '.readingRestriction');
 			visibility('hide', '.readingRestrictionRequired');
-			//$('td').has('div[class*=writingRestriction]').hide();
 			visibility('hide', '.writingRestriction');
 			visibility('hide', '.writingRestrictionRequired');
-			//$('td').has('div[class*=languageRestriction]').hide();
 			visibility('hide', '.languageRestriction');
 			visibility('hide', '.languageRestrictionRequired');
 		}
@@ -548,13 +414,11 @@ $(document).ready(function()
 		if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(1).prop('checked'))
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
-			//$('td').has('div[class*=readingRestriction]').show();
 			visibility('show', '.readingRestriction');
 			visibility('show', '.readingRestrictionRequired');
 		}
 		else
 		{
-			//$('td').has('div[class*=readingRestriction]').hide();
 			visibility('hide', '.readingRestriction');
 			visibility('hide', '.readingRestrictionRequired');
 		}
@@ -563,13 +427,11 @@ $(document).ready(function()
 		if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).prop('checked'))
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
-			//$('td').has('div[class*=writingRestriction]').show();
 			visibility('show', '.writingRestriction');
 			visibility('show', '.writingRestrictionRequired');
 		}
 		else
 		{
-			//$('td').has('div[class*=writingRestriction]').hide();
 			visibility('hide', '.writingRestriction');
 			visibility('hide', '.writingRestrictionRequired');
 		}
@@ -578,13 +440,11 @@ $(document).ready(function()
 		if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).prop('checked'))
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
-			//$('td').has('div[class*=languageRestriction]').show();
 			visibility('show', '.languageRestriction');
 			visibility('show', '.languageRestrictionRequired');
 		}
 		else
 		{
-			//$('td').has('div[class*=languageRestriction]').hide();
 			visibility('hide', '.languageRestriction');
 			visibility('hide', '.languageRestrictionRequired');
 		}
@@ -736,25 +596,17 @@ function checkSUD(){
 		$('tr').has('div[id=sudOption]').find('input').eq(2).prop('checked', false);
 		$('tr').has('div[id=sudOption]').find('input').eq(3).prop('checked', false);
 		$('tr').has('div[id=sudOption]').find('input').eq(4).prop('checked', false);
-		/* $('td').has('div[id=sudOption]').hide();
-		$('tr').has('div[id=sudOption]').next().find('td').hide(); */
 		visibility('hide', '.sudOptions');
 	}
 	else{
-		/* $('td').has('div[id=sudOption]').show();
-		$('tr').has('div[id=sudOption]').next().find('td').show(); */
 		visibility('show', '.sudOptions');
 	}
 	
 	if($('tr').has('div[id=sudOption]').find('input').eq(0).prop('checked') || $('tr').has('div[id=sudOption]').find('input').eq(1).prop('checked') || $('tr').has('div[id=sudOption]').find('input').eq(2).prop('checked') || $('tr').has('div[id=sudOption]').find('input').eq(3).prop('checked') || $('tr').has('div[id=sudOption]').find('input').eq(4).prop('checked')){
 		$('tr').has('div[id=sudAll]').find('input').prop('checked', false);
-		/* $('td').has('div[id=sudAll]').hide();
-		$('tr').has('div[id=sudAll]').next().find('td').hide(); */
 		visibility('hide', '#sudAll');
 	}
 	else{
-		/* $('td').has('div[id=sudAll]').show();
-		$('tr').has('div[id=sudAll]').next().find('td').show(); */
 		visibility('show', '#sudAll');
 	}
 }
