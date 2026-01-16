@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 	}
 
-	$('tr').has('div[class*=driver]').find('select').change(() => {
 	document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('change', () => {
 		try{
 			dropMatchId();
@@ -27,14 +26,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		}
 	});
 
-	$('tr').has('div[class*=driver]').find('select').change(() => {
-		document.querySelector('#providerSelect').closest('table').querySelector('select').addEventListener('change', () => {
-			try{
-				dropMatchId();
-			}catch(error){
-				console.log(error);
-			}
-		});
+	
+	document.querySelector('#providerSelect').closest('table').querySelector('select').addEventListener('change', () => {
+		try{
+			dropMatchId();
+		}catch(error){
+			console.log(error);
+		}
 		try{
 			dropdownShowHide();
 		}catch(error){
