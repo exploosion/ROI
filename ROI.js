@@ -79,7 +79,7 @@ function dropMatchId ()
 			passenger.closest('table').querySelector('select').value = document.querySelector('#payerSelect').closest('table').querySelector('select').value;
 		});
 
-		requireHidden(false, '#payerSelect');
+		requireField('#payerSelect', false);
 	}
 
 	if(document.querySelector('#providerSelect').closest('table').querySelector('select').value){
@@ -87,7 +87,7 @@ function dropMatchId ()
 			passenger.closest('table').querySelector('select').value = document.querySelector('#providerSelect').closest('table').querySelector('select').value;
 		});
 
-		requireHidden(false, '#providerSelect');
+		requireField('#providerSelect', false);
 	}
 
 	/*if($('tr').has('div[class*=payerDriver]').find('select').val())
@@ -223,17 +223,15 @@ function clearDropdowns ()
 $(document).ready(function(){
 	$('tr').has('div[class*=guardianRequiredDriver]').find('input').change(function(event)
 	{
-		requireHidden( $('tr').has('div[class*=guardianRequiredDriver]').find('input')[0].checked
-, 			'guardianRequired');
+		requireField('#guardianRequired', $('tr').has('div[class*=guardianRequiredDriver]').find('input')[0].checked);
 	});
 	$('tr').has('div[id=hivAids]').find('input').change(function(event)
 	{
-		requireHidden( ($('tr').has('div[id=hivAids]').find('input').prop('checked') == true), 'requiredDates');
+		requireField('#requiredDates', ($('tr').has('div[id=hivAids]').find('input').prop('checked') == true));
 	});
 	$('tr').has('div[class*=verifiedRequiredDriver]').find('select').change(function(event)
 	{
-		requireHidden( $('tr').has('div[class*=verifiedRequiredDriver]').find('select').attr('value') != $('tr').has('div[class*=verifiedRequiredDriver]').find('option:contains(\'Parent\')').attr('value')
-, 			'verifiedRequired');
+		requireField('#verifiedRequired', $('tr').has('div[class*=verifiedRequiredDriver]').find('select').attr('value') != $('tr').has('div[class*=verifiedRequiredDriver]').find('option:contains(\'Parent\')').attr('value'));
 	});
 
 	checkRestrictions();
@@ -244,27 +242,27 @@ $(document).ready(function(){
 	
 	$('tr').has('div[class*=revocationRequiredDriver]').find('input').change(function()
 	{
-		requireHidden($('tr').has('div[class*=revocationRequiredDriver]').find('input').prop('checked'), 'voidType');
+		requireField('#voidType', $('tr').has('div[class*=revocationRequiredDriver]').find('input').prop('checked'));
 	});
 	$('tr').has('div[class*=voidType]').find('select').change(function(event)
 	{
-		requireHidden( ($('tr').has('div[class*=voidType]').find('select').val() == $('tr').has('div[class*=voidType]').find('option:contains(\'Revoked\')').val()), 'revocationDetails');
+		requireField('#revocationDetails', ($('tr').has('div[class*=voidType]').find('select').val() == $('tr').has('div[class*=voidType]').find('option:contains(\'Revoked\')').val()));
 	});
 });
 
 function checkRestrictions(){
-	requireHidden(false, 'readingRestrictionRequired');
-	requireHidden(false, 'writingRestrictionRequired');
-	requireHidden(false, 'languageRestrictionRequired');
+	requireField('#readingRestrictionRequired', false);
+	requireField('#writingRestrictionRequired', false);
+	requireField('#languageRestrictionRequired', false);
 		
 	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[1].checked){
-		requireHidden(true, 'readingRestrictionRequired');
+		requireField('#readingRestrictionRequired', false);
 	}
 	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[2].checked){
-		requireHidden(true, 'writingRestrictionRequired');
+		requireField('#writingRestrictionRequired', false);
 	}
 	if ($('tr').has('div[class*=restrictionRequiredDriver]').find('input')[3].checked){
-		requireHidden(true, 'languageRestrictionRequired');
+		requireField('#languageRestrictionRequired', false);
 	}
 }
 
@@ -272,30 +270,30 @@ function checkRestrictions(){
 $(document).ready(function(){
 	$('tr').has('div[id=informationRecordsOther]').find('input').change(function(event)
 	{
-		requireHiddenNotes($('tr').has('div[id=informationRecordsOther]').find('input').prop('checked'), 'informationRecordsOther');
+		requireNotes('#informationRecordsOther', $('tr').has('div[id=informationRecordsOther]').find('input').prop('checked'));
 	});
 	$('tr').has('div[class*=phiRequiredNotes]').find('input').change(function(event)
 	{
-		requireHiddenNotes($('tr').has('div[class*=phiRequiredNotes]').find('tr:contains(\'Other\')').eq(1).find('input').prop('checked'), 'phiRequiredNotes');
+		requireNotes('#phiRequiredNotes', $('tr').has('div[class*=phiRequiredNotes]').find('tr:contains(\'Other\')').eq(1).find('input').prop('checked'));
 	});
 	$('tr').has('div[class*=relationshipRequiredNotes]').find('select').change(function(event)
 	{
-		requireHiddenNotes($('tr').has('div[class*=relationshipRequiredNotes]').find('select').attr('value') == $('tr').has('div[class*=relationshipRequiredNotes]').find('option:contains(\'Other\')').attr('value'), 'relationshipRequiredNotes');
+		requireNotes('#relationshipRequiredNotes', $('tr').has('div[class*=relationshipRequiredNotes]').find('select').attr('value') == $('tr').has('div[class*=relationshipRequiredNotes]').find('option:contains(\'Other\')').attr('value'));
 	});
 	$('tr').has('div[class*=revocationNotes]').find('input').change(function(event)
 	{
-		requireHiddenNotes($('tr').has('div[class*=revocationNotes]').find('input').prop('checked'), 'revocationNotes');
+		requireNotes('#revocationNotes', $('tr').has('div[class*=revocationNotes]').find('input').prop('checked'));
 	});
 	$('tr').has('div[id=language]').find('select').change(function(event)
 	{
 		console.log('Entered Language Dropdown');
 		if($('tr').has('div[id=language]').find('option:contains(\'Other\')').prop('selected') == true)
 		{
-			requireHiddenNotes(true, 'language');
+			requireNotes('#language', true);
 		}
 		else
 		{
-			requireHiddenNotes(false, 'language');
+			requireNotes('#language', false);
 		}
 	});
 });
