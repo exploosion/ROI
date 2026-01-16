@@ -1,48 +1,30 @@
-if(typeof visibility != 'function'){
-	if (typeof include === "undefined") {
-		window.include = function (file){
-		var script = document.createElement('script');
-		script.src = file;
-		script.type = 'text/javascript';
-		script.defer = true;
-			
-		document.getElementsByTagName('head').item(0).appendChild(script);
-		}
-	}
-  
-	include('https://cdn.jsdelivr.net/gh/KlamathBasinBehavioralHealth/CredibleUtilities@21229c2/Utilities/visibility.js');
-}
-
-//Tooltips
-$('document').ready(function(){ 
-    $('input, select, tr, td, div').tooltip({ 
-        content: function(){ 
-            return this.getAttribute('title'); 
-        }, 
-    });  
-});
 
 //Initialize display states and add event handlers for dropMatchId and dropdownShowHide
 $(document).ready(function(){
-	$('tr').has('div[class*=passenger]').find('select').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-	$('tr').has('div[class*=payerDriverText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-	$('tr').has('div[class*=providerDriverText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-	$('tr').has('div[class*=payerPassengerText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-	$('tr').has('div[class*=providerPassengerText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+	try{
+		$('tr').has('div[class*=passenger]').find('select').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+		$('tr').has('div[class*=payerDriverText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+		$('tr').has('div[class*=providerDriverText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+		$('tr').has('div[class*=payerPassengerText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+		$('tr').has('div[class*=providerPassengerText]').find('input').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
+	}catch(error){
+
+	}
+	
 		
 	/* $('td').has('div[class*=passenger]').css('display', 'none');
 	$('tr').has('div[class*=passenger]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.passenger');
+	//visibility('hide', '.passenger');
 	
 	/* $('td').has('div[class*=hideMe]').css('display', 'none');
 	$('tr').has('div[class*=hideMe]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.hideMe');
+	//visibility('hide', '.hideMe');
 	/* $('td').has('div[class*=payerDriver]').css('display', 'none');
 	$('tr').has('div[class*=payerDriver]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.payerDriver');
+	//visibility('hide', '.payerDriver');
 	/* $('td').has('div[class*=providerDriver]').css('display', 'none');
 	$('tr').has('div[class*=providerDriver]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.providerDriver');
+	//visibility('hide', '.providerDriver');
 
 	$('tr').has('div[class*=driver]').find('select').change(() => {
 		try{
@@ -90,10 +72,25 @@ $(document).ready(function(){
 });
 
 //Functions for Matching dropdown IDs and Running Show Hide
-
 function dropMatchId ()
 {	
-	if($('tr').has('div[class*=payerDriver]').find('select').val())
+	if(document.querySelector('#payerSelect').closest('table').querySelector('select').value){
+		[...document.querySelectorAll('.payerPassenger')].forEach((passenger) => {
+			passenger.closest('table').querySelector('select').value = document.querySelector('#payerSelect').closest('table').querySelector('select').value;
+		});
+
+		requireHidden(false, '#payerSelect');
+	}
+
+	if(document.querySelector('#providerSelect').closest('table').querySelector('select').value){
+		[...document.querySelectorAll('.providerPassenger')].forEach((passenger) => {
+			passenger.closest('table').querySelector('select').value = document.querySelector('#providerSelect').closest('table').querySelector('select').value;
+		});
+
+		requireHidden(false, '#providerSelect');
+	}
+
+	/*if($('tr').has('div[class*=payerDriver]').find('select').val())
 	{
 		$('tr').has('div[class*=payerPassenger]').find('select').val($('tr').has('div[class*=payerDriver]').find('select').val());
 		
@@ -117,7 +114,7 @@ function dropMatchId ()
 		}
 		
 		requireHidden(false, 'providerDriver');
-	}
+	}*/
 
 	clearDropdowns();
 }
@@ -127,83 +124,63 @@ function dropdownShowHide ()
 	
 	/* $('td').has('div[class*=payerDriver]').css('display', 'none');
 	$('tr').has('div[class*=payerDriver]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.payerDriver');
-	visibility('hide', '.payerDriverText');
+	visibility('hide', '#payerSelect');
+	//visibility('hide', '.payerDriverText');
 	/* $('td').has('div[class*=payerPassenger]').css('display', 'none');
 	$('tr').has('div[class*=payerPassenger]').next().find('td').css('display', 'none'); */
 	visibility('hide', '.payerPassenger');
 	/* $('td').has('div[class*=providerDriver]').css('display', 'none');
 	$('tr').has('div[class*=providerDriver]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.providerDriver');
-	visibility('hide', '.providerDriverText');
+	visibility('hide', '#providerSelect');
+	//visibility('hide', '.providerDriverText');
 	/* $('td').has('div[class*=providerPassenger]').css('display', 'none');
 	$('tr').has('div[class*=providerPassenger]').next().find('td').css('display', 'none'); */
 	visibility('hide', '.providerPassenger');
 	/* $('td').has('div[class*=payerPassengerText]').css('display', 'none');
 	$('tr').has('div[class*=payerPassengerText]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.payerPassengerText');
+	//visibility('hide', '.payerPassengerText');
 	/* $('td').has('div[class*=providerPassengerText]').css('display', 'none');
 	$('tr').has('div[class*=providerPassengerText]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.providerPassengerText');
+	//visibility('hide', '.providerPassengerText');
 	/* $('td').has('div[class*=hideMe]').css('display', 'none');
 	$('tr').has('div[class*=hideMe]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.hideMe');
+	//visibility('hide', '.hideMe');
 		
-	if($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Other\')').attr('value'))
+	/* if($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Other\')').attr('value'))
 	{
-		/* $('td').has('div[class*=hideMe]').css('display', 'inline-block');
-		$('tr').has('div[class*=hideMe]').next().find('td').css('display', 'inline'); */
 		visibility('show', '.hideMe');
 	}
 	else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Payer\')').attr('value'))
 	{
 		visibility('show', '#payerName');
-		/* $('td').has('div[class*=payerDriver]').css('display', 'inline-block');
-		$('tr').has('div[class*=payerDriver]').next().find('td').css('display', 'inline'); */
 		visibility('show', '.payerDriver');
-		/* $('td').has('div[class*=payerPassenger]').css('display', 'inline-block');
-		$('tr').has('div[class*=payerPassenger]').next().find('td').css('display', 'inline');	 */
 		visibility('show', '.payerPassenger');
 	}
 	else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Provider\')').attr('value'))
 	{
 		visibility('show', '#providerName');
-		/* $('td').has('div[class*=providerDriver]').css('display', 'inline-block');
-		$('tr').has('div[class*=providerDriver]').next().find('td').css('display', 'inline'); */
 		visibility('show', '.providerDriver');
-		/* $('td').has('div[class*=providerPassenger]').css('display', 'inline-block');
-		$('tr').has('div[class*=providerPassenger]').next().find('td').css('display', 'inline'); */
 		visibility('show', '.providerPassenger');
 	}
 	
 	if($('tr').has('div[class*=payerDriverText]').find('input').val())
 	{
-		/* $('td').has('div[class*=payerPassengerText]').css('display', 'inline-block');
-		$('tr').has('div[class*=payerPassengerText]').next().find('td').css('display', 'inline'); */
 		visibility('show', '.payerPassengerText');
 	}
 	else if($('tr').has('div[class*=providerDriverText]').find('input').val())
 	{
-		/* $('td').has('div[class*=providerPassengerText]').css('display', 'inline-block');
-		$('tr').has('div[class*=providerPassengerText]').next().find('td').css('display', 'inline'); */
 		visibility('show', '.providerPassengerText');
 	}
 	
 	if($('tr').has('div[class*=payerEmail]').find('input').val())
 	{
-		/* $('td').has('div[class*=payerEmail]').css('display', 'inline-block');
-		$('tr').has('div[class*=payerEmail]').next().find('td').css('display', 'inline'); */
 		visibility('show', '.payerEmail');
 	}
 	else if($('tr').has('div[class*=providerSpecificIndividual]').find('input').val())
 	{
-		/* $('td').has('div[class*=providerSpecificIndividual]').css('display', 'inline-block');
-		$('tr').has('div[class*=providerSpecificIndividual]').next().find('td').css('display', 'inline'); */
 		visibility('show', '.providerSpecificIndividual');
 	}
-	/* $('td').has('div[class*=goAway]').css('display', 'none');
-	$('tr').has('div[class*=goAway]').next().find('td').css('display', 'none'); */
-	visibility('hide', '.goAway');
+	visibility('hide', '.goAway'); */
 }
 
 //Clearing dropdowns on form submit
@@ -240,68 +217,10 @@ function clearDropdowns ()
 	}
 }
 
-//Functions to drive mandatory hidden questions
-function requireHidden (condition, target) { 
-	$('tr').find('div[class*=' + target + ']').next().remove(); 
-	$('tr').find('div[id=' + target + ']').next().remove();  
-	if(condition) { 
-		$('tr').has('div[class*=' + target + ']').find('input').prop('required', true); 
-		$('tr').has('div[class*=' + target + ']').find('select').prop('required', true); 
-		$('tr').find('div[class*=' + target + ']').after('<div class=\'redAsterisk\' style=\'color : red; display : inline\'>*</div>');
-		$('tr').has('div[id=' + target + ']').find('input').prop('required', true); 
-		$('tr').has('div[id=' + target + ']').find('select').prop('required', true); 
-		$('tr').find('div[id=' + target + ']').after('<div class=\'redAsterisk\' style=\'color : red; display : inline\'>*</div>');  
-	} 
-	else { 
-		$('tr').has('div[class*=' + target + ']').find('input').prop('required', false); 
-		$('tr').has('div[class*=' + target + ']').find('select').prop('required', false); 
-		$('tr').has('div[id=' + target + ']').find('input').prop('required', false); 
-		$('tr').has('div[id=' + target + ']').find('select').prop('required', false);
-	} 
-}  
 
-function requireHiddenNotes (condition, target) { 
-	$('tr').find('div[class*=' + target + ']').next().remove(); 
-	$('tr').find('div[id=' + target + ']').next().remove();  
-	if(condition) { 
-		$('tr').has('div[class*=' + target + ']').next().find('textarea').prop('required', true); 
-		$('tr').find('div[class*=' + target + ']').after('<div class=\'redAsterisk\' style=\'color : red; display : inline\'>*</div>');
-		$('tr').has('div[id=' + target + ']').next().find('textarea').prop('required', true); 
-		$('tr').find('div[id=' + target + ']').after('<div class=\'redAsterisk\' style=\'color : red; display : inline\'>*</div>');
-	} 
-	else { 
-		$('tr').has('div[class*=' + target + ']').next().find('textarea').prop('required', false); 
-		$('tr').has('div[id=' + target + ']').next().find('textarea').prop('required', false);   
-	} 
-}  
 
 //Event handlers for mandatory hidden questions
 $(document).ready(function(){
-	$('tr').has('div[class*=requiredDriver]').find('select').change(function(event)
-	{
-		requireHidden(false, 'requiredPassenger');
-		requireHidden(false, 'payerDriver');
-		requireHidden(false, 'providerDriver');
-		
-		if ($('tr').has('div[class*=requiredDriver]').find('select').attr('value') == $('tr').has('div[class*=requiredDriver]').find('option:contains(\'Other\')').attr('value'))
-		{
-			requireHidden(true, 'requiredPassenger');
-			requireHidden(false, 'payerDriver');
-			requireHidden(false, 'providerDriver');
-		}
-		else if ($('tr').has('div[class*=requiredDriver]').find('select').attr('value') == $('tr').has('div[class*=requiredDriver]').find('option:contains(\'Payer\')').attr('value'))
-		{
-			requireHidden(false, 'requiredPassenger');
-			requireHidden(true, 'payerDriver');
-			requireHidden(false, 'providerDriver');
-		}
-		else if ($('tr').has('div[class*=requiredDriver]').find('select').attr('value') == $('tr').has('div[class*=requiredDriver]').find('option:contains(\'Provider\')').attr('value'))
-		{
-			requireHidden(false, 'requiredPassenger');
-			requireHidden(false, 'payerDriver');
-			requireHidden(true, 'providerDriver');
-		}
-	});
 	$('tr').has('div[class*=guardianRequiredDriver]').find('input').change(function(event)
 	{
 		requireHidden( $('tr').has('div[class*=guardianRequiredDriver]').find('input')[0].checked
@@ -331,11 +250,6 @@ $(document).ready(function(){
 	{
 		requireHidden( ($('tr').has('div[class*=voidType]').find('select').val() == $('tr').has('div[class*=voidType]').find('option:contains(\'Revoked\')').val()), 'revocationDetails');
 	});
-
-	//On form load show dropdowns based on Recipient/Sender type
-	setTimeout(function(){
-		dropdownShowHide();
-	}, 1000); 
 });
 
 function checkRestrictions(){
