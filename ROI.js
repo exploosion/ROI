@@ -327,7 +327,7 @@ function checkHidden ()
 		$('tr').has('div[class=expiredROI]').find('input').attr('checked', true);
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);
-		requireHiddenNotes(false, 'voidType');
+		requireNotes('#voidType', false);
 		/* $('td').has('div[class*=revocationDetails]').css('display', 'none');
 		$('tr').has('div[class*=revocationDetails]').next().find('td').css('display', 'none'); */
 		visibility('hide', '.revocationDetails');	
@@ -337,7 +337,7 @@ function checkHidden ()
 		$('tr').has('div[class=expiredROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', true);	
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);
-		requireHiddenNotes(true, 'voidType');
+		requireNotes('#voidType', true);
 		/* $('td').has('div[class*=revocationDetails]').css('display', 'none');
 		$('tr').has('div[class*=revocationDetails]').next().find('td').css('display', 'none'); */
 		visibility('hide', '.revocationDetails');	
@@ -347,7 +347,7 @@ function checkHidden ()
 		$('tr').has('div[class=expiredROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', true);		
-		requireHiddenNotes(false, 'voidType');
+		requireNotes('#voidType', false);
 		/* $('td').has('div[class*=revocationDetails]').css('display', 'inline');
 		$('tr').has('div[class*=revocationDetails]').next().find('td').css('display', 'inline-block'); */
 		visibility('show', '.revocationDetails');
@@ -357,7 +357,7 @@ function checkHidden ()
 		$('tr').has('div[class=expiredROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);   
-		requireHiddenNotes(false, 'voidType');
+		requireNotes('voidType', false);
 		/* $('td').has('div[class*=revocationDetails]').css('display', 'none');
 		$('tr').has('div[class*=revocationDetails]').next().find('td').css('display', 'none'); */
 		visibility('hide', '.revocationDetails');
