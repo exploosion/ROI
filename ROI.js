@@ -3,8 +3,8 @@
 
 document.addEventListener('DOMContentLoaded', (event) => { 
 	try{
-		[...document.querySelectorAll('.passenger')].forEach((passenger) => {
-			passenger.closest('table').querySelector('select').setAttribute(
+		[...document.querySelectorAll('.sender')].forEach((sender) => {
+			sender.closest('table').querySelector('select').setAttribute(
 				'style',
 				'-webkit-appearance: none; text-indent: 1px; pointer-events: none;'
 			);
@@ -13,14 +13,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 	}
 
+	document.querySelector('#recipientSenderType').closest('table').querySelector('select').addEventListener('change', () => {
+		//If Swapping from one to another, clear fields of appropriate Then autofill when interpreter
+	});
+
 	document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('change', () => {
 		try{
 			dropMatchId();
 		}catch(error){
 			console.log(error);
 		}
+	});
+	document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('mouseleave', () => {
 		try{
-			dropdownShowHide();
+			dropMatchId();
 		}catch(error){
 			console.log(error);
 		}
@@ -33,8 +39,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		}catch(error){
 			console.log(error);
 		}
+	});
+	document.querySelector('#providerSelect').closest('table').querySelector('select').addEventListener('mouseleave', () => {
 		try{
-			dropdownShowHide();
+			dropMatchId();
 		}catch(error){
 			console.log(error);
 		}
@@ -42,11 +50,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	
 	try{
 		dropMatchId();
-	}catch(error){
-		console.log(error);
-	}
-	try{
-		dropdownShowHide();
 	}catch(error){
 		console.log(error);
 	}
@@ -63,10 +66,67 @@ document.addEventListener('DOMContentLoaded', (event) => {
 //Functions for Matching dropdown IDs and Running Show Hide
 function dropMatchId ()
 {	
+	//Clear all reciever entries
+	[...document.querySelectorAll('.reciever')].forEach((reciever) => {
+		reciever.closest('table').querySelector('input, select').value = '';
+
+		try{
+			reciever.closest('table').querySelector('input').readOnly = false;
+		}catch(error){
+
+		}
+		try{
+			reciever.closest('table').querySelector('select').disabled = false;
+		}catch(error){
+
+		}
+	});
+
 	if(document.querySelector('#payerSelect').closest('table').querySelector('select').value){
 		[...document.querySelectorAll('.payerPassenger')].forEach((passenger) => {
 			passenger.closest('table').querySelector('select').value = document.querySelector('#payerSelect').closest('table').querySelector('select').value;
 		});
+
+		if(document.querySelector('#payerSelect').closest('table').querySelector('select').options[document.querySelector('#payerSelect').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#entity').closest('table').querySelector('input').value = document.querySelector('#payerSelect').closest('table').querySelector('select').options[document.querySelector('#payerSelect').closest('table').querySelector('select').selectedIndex].text.replace(/\./g, '');
+
+			document.querySelector('#entity').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#payerAddressOne').closest('table').querySelector('select').options[document.querySelector('#payerAddressOne').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#addressOne').closest('table').querySelector('input').value = document.querySelector('#payerAddressOne').closest('table').querySelector('select').options[document.querySelector('#payerAddressOne').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#addressOne').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#payerAddressTwo').closest('table').querySelector('select').options[document.querySelector('#payerAddressTwo').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#addressTwo').closest('table').querySelector('input').value = document.querySelector('#payerAddressTwo').closest('table').querySelector('select').options[document.querySelector('#payerAddressTwo').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#addressTwo').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#payerCity').closest('table').querySelector('select').options[document.querySelector('#payerCity').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#city').closest('table').querySelector('input').value = document.querySelector('#payerCity').closest('table').querySelector('select').options[document.querySelector('#payerCity').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#city').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#payerState').closest('table').querySelector('select').options[document.querySelector('#payerState').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#state').closest('table').querySelector('select').value = [...document.querySelector('#state').closest('table').querySelector('select').options].find(option =>	option.title.trim().toLowerCase() == document.querySelector('#payerState').closest('table').querySelector('select').options[document.querySelector('#payerState').closest('table').querySelector('select').selectedIndex].text.trim().toLowerCase()).value;
+
+			document.querySelector('#state').closest('table').querySelector('select').disabled = true;
+		}
+		if(document.querySelector('#payerZip').closest('table').querySelector('select').options[document.querySelector('#payerZip').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#zip').closest('table').querySelector('input').value = document.querySelector('#payerZip').closest('table').querySelector('select').options[document.querySelector('#payerZip').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#zip').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#payerPhone').closest('table').querySelector('select').options[document.querySelector('#payerPhone').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#phone').closest('table').querySelector('input').value = document.querySelector('#payerPhone').closest('table').querySelector('select').options[document.querySelector('#payerPhone').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#phone').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#payerFax').closest('table').querySelector('select').options[document.querySelector('#payerFax').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#fax').closest('table').querySelector('input').value = document.querySelector('#payerFax').closest('table').querySelector('select').options[document.querySelector('#payerFax').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#fax').closest('table').querySelector('input').readOnly = true;
+		}
 
 		requireField('#payerSelect', false);
 	}
@@ -76,29 +136,69 @@ function dropMatchId ()
 			passenger.closest('table').querySelector('select').value = document.querySelector('#providerSelect').closest('table').querySelector('select').value;
 		});
 
+		if(document.querySelector('#providerSelect').closest('table').querySelector('select').options[document.querySelector('#providerSelect').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#entity').closest('table').querySelector('input').value = document.querySelector('#providerSelect').closest('table').querySelector('select').options[document.querySelector('#providerSelect').closest('table').querySelector('select').selectedIndex].text.replace(/\./g, '');
+
+			document.querySelector('#entity').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#providerAddressOne').closest('table').querySelector('select').options[document.querySelector('#providerAddressOne').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#addressOne').closest('table').querySelector('input').value = document.querySelector('#providerAddressOne').closest('table').querySelector('select').options[document.querySelector('#providerAddressOne').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#addressOne').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#providerCity').closest('table').querySelector('select').options[document.querySelector('#providerCity').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#city').closest('table').querySelector('input').value = document.querySelector('#providerCity').closest('table').querySelector('select').options[document.querySelector('#providerCity').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#city').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#providerState').closest('table').querySelector('select').options[document.querySelector('#providerState').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#state').closest('table').querySelector('select').value = [...document.querySelector('#state').closest('table').querySelector('select').options].find(option =>	option.title.trim().toLowerCase() == document.querySelector('#providerState').closest('table').querySelector('select').options[document.querySelector('#providerState').closest('table').querySelector('select').selectedIndex].text.trim().toLowerCase()).value;
+
+			document.querySelector('#state').closest('table').querySelector('select').disabled = true;
+		}
+		if(document.querySelector('#providerZip').closest('table').querySelector('select').options[document.querySelector('#providerZip').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#zip').closest('table').querySelector('input').value = document.querySelector('#providerZip').closest('table').querySelector('select').options[document.querySelector('#providerZip').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#zip').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#providerPhone').closest('table').querySelector('select').options[document.querySelector('#providerPhone').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#phone').closest('table').querySelector('input').value = document.querySelector('#providerPhone').closest('table').querySelector('select').options[document.querySelector('#providerPhone').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#phone').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#providerFax').closest('table').querySelector('select').options[document.querySelector('#providerFax').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#fax').closest('table').querySelector('input').value = document.querySelector('#providerFax').closest('table').querySelector('select').options[document.querySelector('#providerFax').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#fax').closest('table').querySelector('input').readOnly = true;
+		}
+		if(document.querySelector('#providerEmail').closest('table').querySelector('select').options[document.querySelector('#providerEmail').closest('table').querySelector('select').selectedIndex].text != ''){
+			document.querySelector('#email').closest('table').querySelector('input').value = document.querySelector('#providerEmail').closest('table').querySelector('select').options[document.querySelector('#providerEmail').closest('table').querySelector('select').selectedIndex].text;
+
+			document.querySelector('#email').closest('table').querySelector('input').readOnly = true;
+		}
+
 		requireField('#providerSelect', false);
 	}
 
 	clearDropdowns();
 }
 
-function dropdownShowHide ()
-{
-	//visibility('hide', '#payerSelect');
-
-	//visibility('hide', '.payerPassenger');
-
-	//visibility('hide', '#providerSelect');
-
-	//visibility('hide', '.providerPassenger');
-}
-
 //Clearing dropdowns on form submit
 function clearDropdowns()
 {	
-	console.log('Plaseholder.');
+	document.querySelector('#payerSelect').closest('table').querySelector('select').value = '';
+	document.querySelector('#providerSelect').closest('table').querySelector('select').value = '';
+	[...document.querySelectorAll('.sender')].forEach((sender) => {
+		sender.closest('table').querySelector('select').value = '';
+	});
 }
 
+//Re-enable any disabled dropdowns before form submit
+document.addEventListener('submit', () => {
+  [...document.querySelectorAll('select:disabled')].forEach(select => {
+    select.disabled = false;
+  });
+});
 
 /*
 //Event handlers for mandatory hidden questions
