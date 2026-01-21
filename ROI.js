@@ -1,13 +1,13 @@
 
-//Initialize display states and add event handlers for dropMatchId and dropdownShowHide
-
+//Initialize display states and add event handlers for dropMatchId
 document.addEventListener('DOMContentLoaded', (event) => { 
 	try{
 		[...document.querySelectorAll('.sender')].forEach((sender) => {
-			sender.closest('table').querySelector('select').setAttribute(
+			/*sender.closest('table').querySelector('select').setAttribute(
 				'style',
 				'-webkit-appearance: none; text-indent: 1px; pointer-events: none;'
-			);
+			);*/
+			sender.closest('table').querySelector('select').disabled = true;
 		});
 	}catch(error){
 
