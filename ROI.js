@@ -19,10 +19,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 		switch(type){
 			case 'Payer':
-
+				clearSenders();
+				clearRecievers();
+				restrictUnrestrictRecievers(false);
 				break;
 			case 'Provider':
-
+				clearSenders();
+				clearRecievers();
+				restrictUnrestrictRecievers(false);
 				break;	
 			case 'Interpreter':
 				clearSenders();
@@ -31,6 +35,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 				document.querySelector('#entity').closest('table').querySelector('input').value = 'Any Interpreter Entity';
 				break;
 			default:
+				clearSenders();
+				clearRecievers();
+				restrictUnrestrictRecievers(false);
 		}
 	});
 	document.querySelector('#recipientSenderType').closest('table').querySelector('select').addEventListener('mouseleave', () => {
