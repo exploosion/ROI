@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	document.querySelector('#recipientSenderType').closest('table').querySelector('select').addEventListener('change', () => {
 		//If Swapping from one to another, clear fields of appropriate Then autofill when interpreter
 	});
+	document.querySelector('#recipientSenderType').closest('table').querySelector('select').addEventListener('mouseleave', () => {
+		//If Swapping from one to another, clear fields of appropriate Then autofill when interpreter
+	});
 
 	document.querySelector('#payerSelect').closest('table').querySelector('select').addEventListener('change', () => {
 		try{
