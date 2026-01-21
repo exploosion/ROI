@@ -15,6 +15,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 	document.querySelector('#recipientSenderType').closest('table').querySelector('select').addEventListener('change', () => {
 		//If Swapping from one to another, clear fields of appropriate Then autofill when interpreter
+		let type = document.querySelector('#recipientSenderType').closest('table').querySelector('select').options[document.querySelector('#recipientSenderType').closest('table').querySelector('select').selectedIndex].text;
+
+		switch(type){
+			case 'Payer':
+
+				break;
+			case 'Provider':
+
+				break;	
+			case 'Interpreter':
+				clearSenders();
+				clearRecievers();
+				restrictUnrestrictRecievers(true);
+				document.querySelector('#entity').closest('table').querySelector('input').value = 'Any Interpreter Entity';
+				break;
+			default:
+		}
 	});
 	document.querySelector('#recipientSenderType').closest('table').querySelector('select').addEventListener('mouseleave', () => {
 		//If Swapping from one to another, clear fields of appropriate Then autofill when interpreter
@@ -118,7 +135,7 @@ function dropMatchId ()
 		}
 
 		requireField('#payerSelect', false);
-		clearDropdowns();
+		clearSenders();
 	}
 
 	if(document.querySelector('#providerSelect').closest('table').querySelector('select').value){
@@ -169,12 +186,12 @@ function dropMatchId ()
 		}
 
 		requireField('#providerSelect', false);
-		clearDropdowns();
+		clearSenders();
 	}
 }
 
 //Clearing dropdowns on form submit
-function clearDropdowns()
+function clearSenders()
 {	
 	document.querySelector('#payerSelect').closest('table').querySelector('select').value = '';
 	document.querySelector('#providerSelect').closest('table').querySelector('select').value = '';
@@ -188,17 +205,26 @@ function clearRecievers(){
 	[...document.querySelectorAll('.reciever')].forEach((reciever) => {
 		reciever.closest('table').querySelector('input, select').value = '';
 
-		try{
-			reciever.closest('table').querySelector('input').readOnly = false;
-		}catch(error){
-
-		}
-		try{
-			reciever.closest('table').querySelector('select').disabled = false;
-		}catch(error){
-
-		}
+		restrictUnrestrictRecievers(false);
 	});
+}
+
+//Restrict/Unrestrict recievers
+function restrictUnrestrictRecievers(condition){
+	if(condition == true || condition == false){
+		[...document.querySelectorAll('.reciever')].forEach((reciever) => {
+			try{
+				reciever.closest('table').querySelector('input').readOnly = condition;
+			}catch(error){
+
+			}
+			try{
+				reciever.closest('table').querySelector('select').disabled = condition;
+			}catch(error){
+
+			}
+		});
+	}
 }
 
 //Re-enable any disabled dropdowns before form submit
