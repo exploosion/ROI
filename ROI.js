@@ -69,23 +69,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 //Functions for Matching dropdown IDs and Running Show Hide
 function dropMatchId ()
 {	
-	//Clear all reciever entries
-	[...document.querySelectorAll('.reciever')].forEach((reciever) => {
-		reciever.closest('table').querySelector('input, select').value = '';
-
-		try{
-			reciever.closest('table').querySelector('input').readOnly = false;
-		}catch(error){
-
-		}
-		try{
-			reciever.closest('table').querySelector('select').disabled = false;
-		}catch(error){
-
-		}
-	});
-
 	if(document.querySelector('#payerSelect').closest('table').querySelector('select').value){
+		clearRecievers();
+
 		[...document.querySelectorAll('.payerPassenger')].forEach((passenger) => {
 			passenger.closest('table').querySelector('select').value = document.querySelector('#payerSelect').closest('table').querySelector('select').value;
 		});
@@ -132,9 +118,11 @@ function dropMatchId ()
 		}
 
 		requireField('#payerSelect', false);
+		clearDropdowns();
 	}
 
 	if(document.querySelector('#providerSelect').closest('table').querySelector('select').value){
+		clearRecievers();
 		[...document.querySelectorAll('.providerPassenger')].forEach((passenger) => {
 			passenger.closest('table').querySelector('select').value = document.querySelector('#providerSelect').closest('table').querySelector('select').value;
 		});
@@ -181,9 +169,8 @@ function dropMatchId ()
 		}
 
 		requireField('#providerSelect', false);
+		clearDropdowns();
 	}
-
-	clearDropdowns();
 }
 
 //Clearing dropdowns on form submit
@@ -193,6 +180,24 @@ function clearDropdowns()
 	document.querySelector('#providerSelect').closest('table').querySelector('select').value = '';
 	[...document.querySelectorAll('.sender')].forEach((sender) => {
 		sender.closest('table').querySelector('select').value = '';
+	});
+}
+
+//Clear all reciever entries
+function clearRecievers(){
+	[...document.querySelectorAll('.reciever')].forEach((reciever) => {
+		reciever.closest('table').querySelector('input, select').value = '';
+
+		try{
+			reciever.closest('table').querySelector('input').readOnly = false;
+		}catch(error){
+
+		}
+		try{
+			reciever.closest('table').querySelector('select').disabled = false;
+		}catch(error){
+
+		}
 	});
 }
 
