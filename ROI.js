@@ -765,7 +765,7 @@ $('document').ready(function(){
 
 //When CHA/OMAP
 function setMedicaid(){
-	if($('tr').has('div[id=payerName]').find('input').val() == 'CHA/OMAP'){
+	if($('tr').has('div[id=entity]').find('input').val() == 'CHA/OMAP'){
 		$('tr').has('div[insuranceType=medicaid]').find('input').prop('checked', true);
 		checkSUD();
 	}
@@ -775,17 +775,17 @@ function whenCHAOMAP(){
 	$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '');
 
 	if($('#recipientSenderType').closest('table').parent().find('select').val() == $('#recipientSenderType').closest('table').parent().find('option').filter(function (){ return $(this).html() == 'Payer'}).val()){
-		if($('tr').has('div[id=payerName]').find('input').val() == 'CHA/OMAP'){
+		if($('tr').has('div[id=entity]').find('input').val() == 'CHA/OMAP'){
 			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>As a Medicaid member, your insurance requires you release all KBBH records to all local Medicaid payers in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li></ul>');
 
 			setMedicaid();
 
 			$('tr').has('div[class*=payerPassengerText]').find('input').val('');
 		}
-		else if($('tr').has('div[id=payerName]').find('input').val() == 'Medicare'){
+		else if($('tr').has('div[id=entity]').find('input').val() == 'Medicare'){
 			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>As a Medicare member, your insurance requires you release all KBBH records in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li></ul>');
 		}
-		else if($('tr').has('div[id=payerName]').find('input').val() != null && $('tr').has('div[id=payerName]').find('input').val() != 'CHA/OMAP' && $('tr').has('div[id=payerName]').find('input').val() != 'Medicare'){
+		else if($('tr').has('div[id=entity]').find('input').val() != null && $('tr').has('div[id=entity]').find('input').val() != 'CHA/OMAP' && $('tr').has('div[id=entity]').find('input').val() != 'Medicare'){
 			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>Your insurance requires you release records related to both mental health and substance use disorders in order for KBBH to bill your insurance, regardless of past or future services in these areas.  Without this release, we will not be able to bill your insurance and you will be financially responsible for any charges to your account.</li></ul>');
 		}
 	}
@@ -794,7 +794,7 @@ function whenCHAOMAP(){
 $('document').ready(function(){
 	//Prevent input if CHA/OMAP
 	$('tr').has('div[insuranceType=medicaid]').find('input').click(function(e){
-		if($('tr').has('div[id=payerName]').find('input').val() == 'CHA/OMAP' || $('tr').has('div[id=payerName]').find('input').val() == 'Medicare' || $('tr').has('div[id=payerName]').find('input').val() == 'Medicare (check only)'){
+		if($('tr').has('div[id=entity]').find('input').val() == 'CHA/OMAP' || $('tr').has('div[id=entity]').find('input').val() == 'Medicare' || $('tr').has('div[id=entity]').find('input').val() == 'Medicare (check only)'){
 			e.preventDefault();
 		}
 	});
@@ -804,9 +804,9 @@ $('document').ready(function(){
 	$('tr').has('div[id=recipientSenderType]').find('select').change(whenCHAOMAP);
 	$('tr').has('div[class*=payerDriver]').find('select').change(whenCHAOMAP);
 
-	//Add tooltip for All SUD Records
+	/*//Add tooltip for All SUD Records
 	$('#sudAll').attr('title', 'SUD All Records include:\n<ul><li>SUD Assessment</li><li>SUD Diagnosis</li><li>SUD Treatment Plan</li><li>SUD Treatment Notes</li><li>Substance Use History</li></ul>');
-	$('#sudAll').tooltip(); 
+	$('#sudAll').tooltip(); */
 
 	setTimeout(function(){
 		whenCHAOMAP();
@@ -819,7 +819,7 @@ var programID;
 function checkPayerDefault(){
 	if(programID != 138){
 		if($('#recipientSenderType').closest('table').parent().find('select').val() == $('#recipientSenderType').closest('table').parent().find('option').filter(function (){ return $(this).html() == 'Payer'}).val()){
-			if($('#payerName').closest('table').parent().find('input').val() == ''){
+			if($('#entity').closest('table').parent().find('input').val() == ''){
 				$('.payerDriver').closest('table').parent().find('select').val($('.payerDriver').closest('table').parent().find('option').filter(function (){ return $(this).html() == 'CHA/OMAP'}).val());
 				$('.payerDriver').closest('table').parent().find('select').trigger('change');
 			}
@@ -887,7 +887,7 @@ function handleOtherOption(){
 
 	if(payerSelect.value === 'other'){
 		
-		document.querySelector('#payerName').closest('table').querySelector('input').value = '';
+		document.querySelector('#entity').closest('table').querySelector('input').value = '';
 		clearSenders();
 		restrictUnrestrictRecievers(false);
 	}/*else if(payerSelect.value != 'other' && payerSelect.value != ''){
