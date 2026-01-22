@@ -1,6 +1,7 @@
 
 //Initialize display states and add event handlers for dropMatchId
 document.addEventListener('DOMContentLoaded', (event) => { 
+	visibility('hide', '.sender');
 	try{
 		[...document.querySelectorAll('.sender')].forEach((sender) => {
 			/*sender.closest('table').querySelector('select').setAttribute(
