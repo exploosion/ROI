@@ -430,78 +430,6 @@ $(window).bind('load', function (){
 	$('#add_signature_3').find('h3').text('Revocation Signature');
 });
 
-/*
-    
-
-//Clear text boxes based on dropdown
-var clearCounter;
-
-function clearPayerPassengerText ()
-{
-	visibility('hide', '.payerBegone');
-	//visibility('hide', '.payerPassengerText');
-	$('tr').has('div[class*=payerDriverText]').find('input').val('');
-	for(clearCounter = 0; clearCounter < $('tr').has('div[class*=payerPassengerText]').find('input').length; clearCounter++)
-	{
-		$('tr').has('div[class*=payerPassengerText]').find('input')[clearCounter].value = '';
-	}
-	$('tr').has('div[class*=payerEmail]').find('input').val('');
-}
-
-function clearProviderPassengerText ()
-{
-	visibility('hide', '.providerBegone');
-	//visibility('hide', '.providerPassengerText');
-	$('tr').has('div[class*=providerDriverText]').find('input').val('');
-	$('tr').has('div[class*=providerSpecificIndividual]').find('input').val('');
-	for(clearCounter = 0; clearCounter < $('tr').has('div[class*=providerPassengerText]').find('input').length; clearCounter++)
-	{
-		$('tr').has('div[class*=providerPassengerText]').find('input')[clearCounter].value = '';
-	}
-}
-
-function clearOtherText ()
-{
-	for(clearCounter = 0; clearCounter < $('tr').has('div[class*=hideMe]').find('input').length; clearCounter++)
-	{
-		$('tr').has('div[class*=hideMe]').find('input')[clearCounter].value = '';
-	}
-	for(clearCounter = 0; clearCounter < $('tr').has('div[class*=hideMe]').find('select').length; clearCounter++)
-	{
-		$('tr').has('div[class*=hideMe]').find('select')[clearCounter].value = '';
-	}
-}
-
-function clearText ()
-{
-	if ($('tr').has('div[class*=requiredDriver]').find('select').val() == $('tr').has('div[class*=requiredDriver]').find('option:contains(\'Payer\')').val())
-	{
-		clearProviderPassengerText();
-		clearOtherText();
-	}
-	else if ($('tr').has('div[class*=requiredDriver]').find('select').val() == $('tr').has('div[class*=requiredDriver]').find('option:contains(\'Provider\')').val())
-	{
-		clearPayerPassengerText();
-		clearOtherText();
-	}
-	else if ($('tr').has('div[class*=requiredDriver]').find('select').val() == $('tr').has('div[class*=requiredDriver]').find('option:contains(\'Other\')').val())
-	{
-		clearPayerPassengerText();
-		clearProviderPassengerText();
-	}
-	else
-	{
-		clearPayerPassengerText();
-		clearProviderPassengerText();
-		clearOtherText();
-	}
-}
-
-$(document).ready(function() 
-{
-	$('tr').has('div[class*=requiredDriver]').find('select').change(clearText);
-});
-
 //Restrictions checkbox logic
 $(document).ready(function() 
 {
@@ -957,23 +885,16 @@ function handleOtherOption(){
 	let payerSelect = document.querySelector('#payerSelect').closest('table').querySelector('select');
 
 	if(payerSelect.value === 'other'){
-		clearDropdowns();
+		
 		document.querySelector('#payerName').closest('table').querySelector('input').value = '';
-		[...document.querySelectorAll('.payerPassengerText')].forEach((passenger) => {
-			passenger.closest('table').querySelector('input').value = '';
-		});
-		document.querySelector('.payerEmail').closest('table').querySelector('input').value = '';
-		visibility('hide', '#payerName');
-		visibility('hide', '.payerPassengerText');
-		visibility('hide', '.payerEmail');
-		visibility('show', '.hideMe');
-		visibility('show', '#otherName', true);
-	}else if(payerSelect.value != 'other' && payerSelect.value != ''){
+		clearSenders();
+		restrictUnrestrictRecievers(false);
+	}/*else if(payerSelect.value != 'other' && payerSelect.value != ''){
 		visibility('show', '#payerName');
 		visibility('show', '.payerPassengerText');
 		visibility('show', '.payerEmail');
 		visibility('hide', '.hideMe');
-	}
+	}*/
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -988,4 +909,4 @@ document.addEventListener('DOMContentLoaded', () => {
 //Make uneditable, remove dropdown arrow
 function makeDropDownReadOnly(){
     $('tr').has('div[class*=passenger]').find('select').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-}*/
+}
