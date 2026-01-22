@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	document.querySelector('#recipientSenderType').closest('table').querySelector('select').addEventListener('change', () => {
 		//If Swapping from one to another, clear fields of appropriate Then autofill when interpreter
 		let type = document.querySelector('#recipientSenderType').closest('table').querySelector('select').options[document.querySelector('#recipientSenderType').closest('table').querySelector('select').selectedIndex].text;
+		
+		visibility('show', '.reciever');
 
 		switch(type){
 			case 'Payer':
@@ -33,6 +35,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 				clearRecievers();
 				restrictUnrestrictRecievers(true);
 				document.querySelector('#entity').closest('table').querySelector('input').value = 'Any Interpreter Entity';
+				visibility('hide', '.reciever');
+				visibility('show', '#entity');
 				break;
 			default:
 				clearSenders();
@@ -241,7 +245,6 @@ document.addEventListener('submit', () => {
   });
 });
 
-/*
 //Event handlers for mandatory hidden questions
 $(document).ready(function(){
 	$('tr').has('div[class*=guardianRequiredDriver]').find('input').change(function(event)
@@ -425,7 +428,10 @@ $(window).bind('load', function (){
 	$('#add_signature_1').find('h3').text('Client Signature');
 	$('#add_signature_2').find('h3').text('Legal Guardian Signature');
 	$('#add_signature_3').find('h3').text('Revocation Signature');
-});    
+});
+
+/*
+    
 
 //Clear text boxes based on dropdown
 var clearCounter;
@@ -982,37 +988,4 @@ document.addEventListener('DOMContentLoaded', () => {
 //Make uneditable, remove dropdown arrow
 function makeDropDownReadOnly(){
     $('tr').has('div[class*=passenger]').find('select').attr('style', '-webkit-appearance: none; text-indent: 1px; pointer-events: none;');
-}
-
-///Debug Test
-function debugTest(){
-	visibility('show', '.hideMe');
-
-	visibility('show', '.payerDriver');
-
-	visibility('show', '.payerPassenger');
-
-	visibility('show', '.providerDriver');
-
-	visibility('show', '.providerPassenger');
-
-
-
-    if($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Other\')').attr('value'))
-    {
-        $('tr').has('div[class*=payerDriver]').find('select').val('');
-        $('tr').has('div[class*=payerPassenger]').find('select').val('');
-        $('tr').has('div[class*=providerDriver]').find('select').val('');
-        $('tr').has('div[class*=providerPassenger]').find('select').val('');
-    }
-    else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Payer\')').attr('value'))
-    {
-        $('tr').has('div[class*=providerDriver]').find('select').val('');
-        $('tr').has('div[class*=providerPassenger]').find('select').val('');
-    }
-    else if ($('tr').has('div[class*=hideDriver]').find('select').attr('value') == $('option:contains(\'Provider\')').attr('value'))
-    {
-        $('tr').has('div[class*=payerDriver]').find('select').val('');
-        $('tr').has('div[class*=payerPassenger]').find('select').val('');
-    }
 }*/
