@@ -719,10 +719,10 @@ function checkMedicaid(){
 		$('tr').has('div[id=recipientSenderType]').find('select').val($('tr').has('div[id=recipientSenderType]').find('option').filter(function (){return $(this).html() == 'Payer';}).val());
 
 		$('tr').has('div[id=recipientSenderType]').find('select').trigger('change');
-		
-		$('tr').has('div[id=payerSelect]').find('select').val($('tr').has('div[id=payerSelect]').find('option').filter(function (){return $(this).html() == 'CHA/OMAP';}).val());
 
-		$('tr').has('div[id=payerSelect]').find('select').trigger('change');
+		document.querySelector('#payerSelect').closest('table').querySelector('select').value = [...document.querySelector('#payerSelect').closest('table').querySelector('select').options].filter((option) => option.title.includes('CHA/OMAP'))[0].value;
+
+		document.querySelector('#payerSelect').closest('table').querySelector('select').dispatchEvent(new Event("change", { bubbles: true }));
 
 		console.log('Defaulting to CHA/OMHP');
 	}
