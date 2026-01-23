@@ -711,17 +711,18 @@ function checkMedicaid(){
 		});
 		console.log('Checking All');
 
-		$('tr').has('div[id=releaseType]').find('select').val($('tr').has('div[id=releaseType]').find('option').filter(function (){return $(this).html() == 'Release/Receive Records/Information';}).val());
-
-		$('tr').has('div[id=releaseType]').find('select').trigger('change');
+		[...document.querySelector('#releaseType').closest('table').querySelectorAll('input')].forEach((input) => {
+			input.checked = true;
+			input.dispatchEvent(new Event("change", { bubbles: true }));
+		});
 		
 		$('tr').has('div[id=recipientSenderType]').find('select').val($('tr').has('div[id=recipientSenderType]').find('option').filter(function (){return $(this).html() == 'Payer';}).val());
 
 		$('tr').has('div[id=recipientSenderType]').find('select').trigger('change');
 		
-		$('tr').has('div[class*=payerDriver]').find('select').val($('tr').has('div[class*=payerDriver]').find('option').filter(function (){return $(this).html() == 'CHA/OMAP';}).val());
+		$('tr').has('div[id=payerSelect]').find('select').val($('tr').has('div[id=payerSelect]').find('option').filter(function (){return $(this).html() == 'CHA/OMAP';}).val());
 
-		$('tr').has('div[class*=payerDriver]').find('select').trigger('change');
+		$('tr').has('div[id=payerSelect]').find('select').trigger('change');
 
 		console.log('Defaulting to CHA/OMHP');
 	}
@@ -776,17 +777,23 @@ function whenCHAOMAP(){
 
 	if($('#recipientSenderType').closest('table').parent().find('select').val() == $('#recipientSenderType').closest('table').parent().find('option').filter(function (){ return $(this).html() == 'Payer'}).val()){
 		if($('tr').has('div[id=entity]').find('input').val() == 'CHA/OMAP'){
-			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>As a Medicaid member, your insurance requires you release all KBBH records to all local Medicaid payers in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li></ul>');
+			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', 'As a Medicaid member, your insurance requires you release all KBBH records to all local Medicaid payers in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.');
 
 			setMedicaid();
 
 			$('tr').has('div[class*=payerPassengerText]').find('input').val('');
+
+			/*[...document.querySelectorAll('div[insuranceType=\'medicaid\']')].forEach((div) => {
+				div.closest('table').querySelector('input').style.border = '2px solid black';
+				div.closest('table').querySelector('input').style.backgroundColor = 'lightblue';
+				div.closest('table').querySelector('input').style.outline = 'none';
+			});*/
 		}
 		else if($('tr').has('div[id=entity]').find('input').val() == 'Medicare'){
-			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>As a Medicare member, your insurance requires you release all KBBH records in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.</li></ul>');
+			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', 'As a Medicare member, your insurance requires you release all KBBH records in order to receive services.  This includes, but is not limited to mental health and substance use disorder records, regardless of past or future services in these areas.');
 		}
 		else if($('tr').has('div[id=entity]').find('input').val() != null && $('tr').has('div[id=entity]').find('input').val() != 'CHA/OMAP' && $('tr').has('div[id=entity]').find('input').val() != 'Medicare'){
-			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', '<ul><li>Your insurance requires you release records related to both mental health and substance use disorders in order for KBBH to bill your insurance, regardless of past or future services in these areas.  Without this release, we will not be able to bill your insurance and you will be financially responsible for any charges to your account.</li></ul>');
+			$('tr').has('div[insuranceType=medicaid]').find('input').attr('title', 'Your insurance requires you release records related to both mental health and substance use disorders in order for KBBH to bill your insurance, regardless of past or future services in these areas.  Without this release, we will not be able to bill your insurance and you will be financially responsible for any charges to your account.');
 		}
 	}
 }
