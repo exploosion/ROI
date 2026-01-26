@@ -813,6 +813,8 @@ $('document').ready(function(){
 	$('tr').has('div[insuranceType=medicaid]').find('input').click(function(e){
 		if($('tr').has('div[id=entity]').find('input').val() == 'CHA/OMAP' || $('tr').has('div[id=entity]').find('input').val() == 'Medicare' || $('tr').has('div[id=entity]').find('input').val() == 'Medicare (check only)'){
 			e.preventDefault();
+		}else if(document.querySelector('#recipientSenderType').closest('table').querySelector('select').value === [...document.querySelector('#recipientSenderType').closest('table').querySelectorAll('option')].filter((option) => { return option.innerText === 'Interpreter';})[0].value){
+			e.preventDefault();
 		}
 	});
 
