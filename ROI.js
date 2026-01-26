@@ -643,6 +643,11 @@ function checkPayer(){
 		$('tr').has('div[id=purpose]').find('tr:contains(\'Treatment\')').eq(1).find('input').prop('checked', true);
 		$('tr').has('div[id=purpose]').find('tr:contains(\'Healthcare Operations\')').eq(1).find('input').prop('checked', true);
 	}
+	else if(document.querySelector('#recipientSenderType').closest('table').querySelector('select').value === [...document.querySelector('#recipientSenderType').closest('table').querySelectorAll('option')].filter((option) => { return option.innerText === 'Interpreter';})[0].value){
+		$('tr').has('div[id=purpose]').find('tr:contains(\'Payment\')').eq(1).find('input').prop('checked', false);
+		$('tr').has('div[id=purpose]').find('tr:contains(\'Treatment\')').eq(1).find('input').prop('checked', false);
+		$('tr').has('div[id=purpose]').find('tr:contains(\'Healthcare Operations\')').eq(1).find('input').prop('checked', true);
+	}
 }
 
 $('document').ready(function(){
