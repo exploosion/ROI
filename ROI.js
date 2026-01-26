@@ -1020,7 +1020,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#recipientSenderType').closest('table').querySelector('select').addEventListener('mouseleave', restrictValidDates);
 });
 
-window.onload = function(){
+document.addEventListener('DOMContentLoaded', () => {
   //checkFormState.apply(null, ['releaseType', 'recipientSenderType']);    
   checkFormState();
-};
+});
