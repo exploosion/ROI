@@ -700,6 +700,7 @@ function checkFormState(){
 	}
 	console.log(formState);
 	checkMedicaid();
+	restrictValidDates();
 }
 
 function checkMedicaid(){
