@@ -369,6 +369,15 @@ function checkVoid(){
 
 function checkHidden () 
 {     
+	$('tr').has('div[class=expiredROI]').find('input').attr('checked', false);
+	$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
+	$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);   
+	requireNotes('voidType', false);
+	visibility('hide', '.revocationDetails');
+	visibility('hide', '.expiredROI');	
+	visibility('hide', '.invalidROI');
+	visibility('hide', '.revokedROI');
+	
 	if (($('tr').has('div[class*=voidType]').find('option[value=\'' + $('tr').has('div[class*=voidType]').find('select').val() + '\']').text()) == 'Expired')    
 	{         
 		$('tr').has('div[class=expiredROI]').find('input').attr('checked', true);
@@ -401,17 +410,6 @@ function checkHidden ()
 		visibility('hide', '.expiredROI');	
 		visibility('hide', '.invalidROI');
 		visibility('show', '.revokedROI');
-	}	
-	else
-	{
-		$('tr').has('div[class=expiredROI]').find('input').attr('checked', false);
-		$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
-		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);   
-		requireNotes('voidType', false);
-		visibility('hide', '.revocationDetails');
-		visibility('hide', '.expiredROI');	
-		visibility('hide', '.invalidROI');
-		visibility('hide', '.revokedROI');
 	}
 }
 
@@ -421,9 +419,9 @@ $(document).ready(function()
 	setTimeout(function(){
 		checkHidden();
 	}, 1000);
-	$('tr').has('div[class=expiredROI]').find('input').css('display', 'inline');
-	$('tr').has('div[class=invalidROI]').find('input').css('display', 'inline');
-	$('tr').has('div[class=revokedROI]').find('input').css('display', 'inline');
+	$('tr').has('div[class=expiredROI]').find('input').css('display', 'none');
+	$('tr').has('div[class=invalidROI]').find('input').css('display', 'none');
+	$('tr').has('div[class=revokedROI]').find('input').css('display', 'none');
 	$('tr').has('div[class*=voidType]').find('select').change(checkHidden);
 });
 
