@@ -731,10 +731,6 @@ function checkMedicaid(){
 	}	
 }
 
-window.onload = function(){
-  checkFormState.apply(null, ['releaseType', 'recipientSenderType']);    
-};
-
 //Hide unwanted Options in Select
 function hideOption (target, optionText, mode = 'hide'){
 	if(mode == 'hide'){
@@ -1023,3 +1019,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#recipientSenderType').closest('table').querySelector('select').addEventListener('change', restrictValidDates);
   document.querySelector('#recipientSenderType').closest('table').querySelector('select').addEventListener('mouseleave', restrictValidDates);
 });
+
+window.onload = function(){
+  //checkFormState.apply(null, ['releaseType', 'recipientSenderType']);    
+  checkFormState();
+};
