@@ -246,19 +246,43 @@ document.addEventListener('submit', () => {
   });
 });
 
+function checkGuardianDriver(){
+	visibility('hide', '#guardianRequired', false);
+	if($('tr').has('div[class*=guardianRequiredDriver]').find('input')[0].checked){
+		visibility('show', '#guardianRequired', true);
+	}
+}
+
+function checkHIV(){
+	visibility('hide', '#requiredDates', false);
+	if($('tr').has('div[id=hivAids]').find('input').prop('checked') == true){
+		visibility('show', '#requiredDates', true);
+	}
+}
+
+function checkVerified(){
+	visibility('hide', '#verifiedRequired', false);
+	if($('tr').has('div[class*=verifiedRequiredDriver]').find('select').attr('value') != $('tr').has('div[class*=verifiedRequiredDriver]').find('option:contains(\'Parent\')').attr('value')){
+		visibility('show', '#verifiedRequired', true);
+	}
+}
+
 //Event handlers for mandatory hidden questions
 $(document).ready(function(){
+	checkGuardianDriver();
+	checkHIV();
+	checkVerified();
 	$('tr').has('div[class*=guardianRequiredDriver]').find('input').change(function(event)
 	{
-		requireField('#guardianRequired', $('tr').has('div[class*=guardianRequiredDriver]').find('input')[0].checked);
+		checkGuardianDriver();
 	});
 	$('tr').has('div[id=hivAids]').find('input').change(function(event)
 	{
-		requireField('#requiredDates', ($('tr').has('div[id=hivAids]').find('input').prop('checked') == true));
+		checkHIV();
 	});
 	$('tr').has('div[class*=verifiedRequiredDriver]').find('select').change(function(event)
 	{
-		requireField('#verifiedRequired', $('tr').has('div[class*=verifiedRequiredDriver]').find('select').attr('value') != $('tr').has('div[class*=verifiedRequiredDriver]').find('option:contains(\'Parent\')').attr('value'));
+		checkVerified();
 	});
 
 	checkRestrictions();
