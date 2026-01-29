@@ -268,10 +268,10 @@ function checkHIV(){
 function checkVerified(){
 	visibility('hide', '.verifiedRequired', false);
 	requireNotes('.verifiedRequiredDriver', false);
-	
+
 	if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Other (listed below)'){
 		visibility('show', '.verifiedRequired', true);
-		requireNotes('.verifiedRequiredDriver', true);
+		requireField('.verifiedRequiredDriver', true);
 	}else if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Parent'){
 		visibility('show', '.verifiedRequired', false);
 	}
