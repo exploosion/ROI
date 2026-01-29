@@ -253,8 +253,17 @@ document.addEventListener('submit', () => {
 
 function checkGuardianDriver(){
 	visibility('hide', '.guardianRequired', false);
+	visibility('hide', '.verifiedRequired', false);
+	requireNotes('.verifiedRequiredDriver', false);
 	if($('tr').has('div[class*=guardianRequiredDriver]').find('input')[0].checked){
 		visibility('show', '.guardianRequired', true);
+		//If not parent
+		if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Other (listed below)'){
+			visibility('show', '.verifiedRequired', true);
+			requireNotes('.verifiedRequiredDriver', true);
+		}else{
+			visibility('show', '.verifiedRequired', false);
+		}
 	}
 }
 
