@@ -267,7 +267,7 @@ function checkHIV(){
 
 function checkVerified(){
 	visibility('hide', '.verifiedRequired', false);
-	requireNotes('.verifiedRequiredDriver', false);
+	requireField('.verifiedRequiredDriver', false);
 
 	if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Other (listed below)'){
 		visibility('show', '.verifiedRequired', true);
