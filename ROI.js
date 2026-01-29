@@ -268,13 +268,12 @@ function checkHIV(){
 function checkVerified(){
 	visibility('hide', '.verifiedRequired', false);
 	requireNotes('.verifiedRequiredDriver', false);
-	if($('tr').has('div[class*=guardianRequiredDriver]').find('input')[0].checked){
-		if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Other (listed below)'){
-			visibility('show', '.verifiedRequired', true);
-			requireNotes('.verifiedRequiredDriver', true);
-		}else if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Parent'){
-			visibility('show', '.verifiedRequired', false);
-		}
+	
+	if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Other (listed below)'){
+		visibility('show', '.verifiedRequired', true);
+		requireNotes('.verifiedRequiredDriver', true);
+	}else if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Parent'){
+		visibility('show', '.verifiedRequired', false);
 	}
 }
 
@@ -286,7 +285,6 @@ $(document).ready(function(){
 	$('tr').has('div[class*=guardianRequiredDriver]').find('input').change(function(event)
 	{
 		checkGuardianDriver();
-		checkVerified();
 	});
 	$('tr').has('div[id=hivAids]').find('input').change(function(event)
 	{
