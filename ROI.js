@@ -253,17 +253,8 @@ document.addEventListener('submit', () => {
 
 function checkGuardianDriver(){
 	visibility('hide', '.guardianRequired', false);
-	visibility('hide', '.verifiedRequired', false);
-	requireNotes('.verifiedRequiredDriver', false);
 	if($('tr').has('div[class*=guardianRequiredDriver]').find('input')[0].checked){
 		visibility('show', '.guardianRequired', true);
-		//If not parent
-		if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Other (listed below)'){
-			visibility('show', '.verifiedRequired', true);
-			requireNotes('.verifiedRequiredDriver', true);
-		}else if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Parent'){
-			visibility('show', '.verifiedRequired', false);
-		}
 	}
 }
 
@@ -276,8 +267,12 @@ function checkHIV(){
 
 function checkVerified(){
 	visibility('hide', '.verifiedRequired', false);
-	if($('tr').has('div[class*=verifiedRequiredDriver]').find('select').attr('value') != $('tr').has('div[class*=verifiedRequiredDriver]').find('option:contains(\'Parent\')').attr('value')){
+	requireNotes('.verifiedRequiredDriver', false);
+	if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Other (listed below)'){
 		visibility('show', '.verifiedRequired', true);
+		requireNotes('.verifiedRequiredDriver', true);
+	}else if(document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select')[document.querySelector('.verifiedRequiredDriver').closest('table').querySelector('select').selectedIndex].text === 'Parent'){
+		visibility('show', '.verifiedRequired', false);
 	}
 }
 
