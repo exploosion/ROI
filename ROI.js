@@ -848,14 +848,14 @@ $('document').ready(function(){
 		if($('tr').has('div[id=entity]').find('input').val() == 'CHA/OMAP' || $('tr').has('div[id=entity]').find('input').val() == 'Medicare' || $('tr').has('div[id=entity]').find('input').val() == 'Medicare (check only)'){
 			$('tr').has('div[insuranceType=medicaid]').find('input').each(function(){
 				if(!$(this).prop('checked')){
-					$(this).trigger('click');
+					$(this).prop('checked', true);
 				}
 			});
 			e.preventDefault();
 		}else if(document.querySelector('#recipientSenderType').closest('table').querySelector('select').value === [...document.querySelector('#recipientSenderType').closest('table').querySelectorAll('option')].filter((option) => { return option.innerText === 'Interpreter';})[0].value){
 			$('tr').has('div[insuranceType=medicaid]').find('input').each(function(){
 				if(!$(this).prop('checked')){
-					$(this).trigger('click');
+					$(this).prop('checked', true);
 				}
 			});
 			e.preventDefault();
