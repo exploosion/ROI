@@ -286,6 +286,7 @@ $(document).ready(function(){
 	$('tr').has('div[class*=guardianRequiredDriver]').find('input').change(function(event)
 	{
 		checkGuardianDriver();
+		checkVerified();
 	});
 	$('tr').has('div[id=hivAids]').find('input').change(function(event)
 	{
