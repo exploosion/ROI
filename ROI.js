@@ -756,7 +756,7 @@ function checkFormState(){
 			formState = 'reloaded';
 		}
 	}*/
-	if([...document.querySelectorAll('.awknowledgement')].filter(element => element.closest('table').querySelector('input').checked == false).length){
+	if([...document.querySelectorAll('.awknowledgement')].filter(element => element.closest('table').querySelector('input').checked == true).length){
 		formState = 'reloaded';
 	}
 	console.log(formState);
