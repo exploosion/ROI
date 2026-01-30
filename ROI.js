@@ -253,8 +253,10 @@ document.addEventListener('submit', () => {
 
 function checkGuardianDriver(){
 	visibility('hide', '.guardianRequired', false);
+	visibility('hide', '.relationshipRequiredNotes', false, false);
 	if($('tr').has('div[class*=guardianRequiredDriver]').find('input')[0].checked){
 		visibility('show', '.guardianRequired', true);
+		visibility('show', '.relationshipRequiredNotes', true, true);
 	}
 }
 
