@@ -285,6 +285,7 @@ $(document).ready(function(){
 	$('tr').has('div[class*=guardianRequiredDriver]').find('input').change(function(event)
 	{
 		checkGuardianDriver();
+		checkVerified();
 	});
 	$('tr').has('div[id=hivAids]').find('input').change(function(event)
 	{
@@ -745,7 +746,7 @@ var formState;
 
 function checkFormState(){
 	formState = 'new';
-	for(let count = 0; count < arguments.length; count++){
+	/*for(let count = 0; count < arguments.length; count++){
 		while($('tr').has(`div[class=${arguments[count]}], div[id=${arguments[count]}]`).length == 0){
 
 		}
@@ -754,6 +755,9 @@ function checkFormState(){
 		if($('tr').has(`div[class=${arguments[count]}], div[id=${arguments[count]}]`).find('input:checked').length || $('tr').has(`div[class=${arguments[count]}], div[id=${arguments[count]}]`).find('input').val() || $('tr').has(`div[class=${arguments[count]}], div[id=${arguments[count]}]`).find('select').val()){
 			formState = 'reloaded';
 		}
+	}*/
+	if([...document.querySelectorAll('.awknowledgement')].filter(element => element.closest('table').querySelector('input').checked == false).length){
+		formState = 'reloaded';
 	}
 	console.log(formState);
 	checkMedicaid();
