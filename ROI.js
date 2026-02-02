@@ -386,10 +386,11 @@ function checkHidden ()
 	$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 	$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);   
 	requireNotes('voidType', false);
-	visibility('hide', '.revocationDetails');
-	visibility('hide', '.expiredROI');	
-	visibility('hide', '.invalidROI');
-	visibility('hide', '.revokedROI');
+	visibility('hide', '.revocationDetails', false);
+	visibility('hide', '.expiredROI', false);	
+	visibility('hide', '.invalidROI', false);
+	visibility('hide', '.revokedROI', false);
+	requireNotes('.revocationNotes', false);
 	
 	if (($('tr').has('div[class*=voidType]').find('option[value=\'' + $('tr').has('div[class*=voidType]').find('select').val() + '\']').text()) == 'Expired')    
 	{         
@@ -398,9 +399,10 @@ function checkHidden ()
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);
 		requireNotes('#voidType', false);
 		visibility('hide', '.revocationDetails');	
-		visibility('show', '.expiredROI');	
-		visibility('hide', '.invalidROI');
-		visibility('hide', '.revokedROI');
+		visibility('show', '.expiredROI', true);	
+		visibility('hide', '.invalidROI', false);
+		visibility('hide', '.revokedROI', false);
+		requireNotes('.revocationNotes', false);
 	}
 	else if (($('tr').has('div[class*=voidType]').find('option[value=\'' + $('tr').has('div[class*=voidType]').find('select').val() + '\']').text()) == 'Invalid')     
 	{                  
@@ -408,10 +410,11 @@ function checkHidden ()
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', true);	
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);
 		requireNotes('#voidType', true);
-		visibility('hide', '.revocationDetails');	
-		visibility('hide', '.expiredROI');	
-		visibility('show', '.invalidROI');
-		visibility('hide', '.revokedROI');
+		visibility('hide', '.revocationDetails', false);	
+		visibility('hide', '.expiredROI', false);	
+		visibility('show', '.invalidROI', true);
+		visibility('hide', '.revokedROI', false);
+		requireNotes('.revocationNotes', false);
 	}
 	else if (($('tr').has('div[class*=voidType]').find('option[value=\'' + $('tr').has('div[class*=voidType]').find('select').val() + '\']').text()) == 'Revoked')     
 	{                  
@@ -419,10 +422,11 @@ function checkHidden ()
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', true);		
 		requireNotes('#voidType', false);
-		visibility('show', '.revocationDetails');
-		visibility('hide', '.expiredROI');	
-		visibility('hide', '.invalidROI');
-		visibility('show', '.revokedROI');
+		visibility('show', '.revocationDetails', true);
+		visibility('hide', '.expiredROI', false);	
+		visibility('hide', '.invalidROI', false);
+		visibility('show', '.revokedROI', true);
+		requireNotes('.revocationNotes', true);
 	}
 }
 
@@ -432,9 +436,6 @@ $(document).ready(function()
 	setTimeout(function(){
 		checkHidden();
 	}, 1000);
-	$('tr').has('div[class=expiredROI]').find('input').css('display', 'none');
-	$('tr').has('div[class=invalidROI]').find('input').css('display', 'none');
-	$('tr').has('div[class=revokedROI]').find('input').css('display', 'none');
 	$('tr').has('div[class*=voidType]').find('select').change(checkHidden);
 });
 
@@ -481,29 +482,29 @@ $(window).bind('load', function (){
 //Restrictions checkbox logic
 $(document).ready(function() 
 {
-	visibility('hide', '.readingRestriction');
-	visibility('hide', '.readingRestrictionRequired');
-	visibility('hide', '.writingRestriction');
-	visibility('hide', '.writingRestrictionRequired');
-	visibility('hide', '.languageRestriction');
-	visibility('hide', '.languageRestrictionRequired');
+	visibility('hide', '.readingRestriction', false);
+	visibility('hide', '.readingRestrictionRequired', false);
+	visibility('hide', '.writingRestriction', false);
+	visibility('hide', '.writingRestrictionRequired', false);
+	visibility('hide', '.languageRestriction', false);
+	visibility('hide', '.languageRestrictionRequired', false);
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(1).prop('checked'))
 	{
-		visibility('show', '.readingRestriction');
-		visibility('show', '.readingRestrictionRequired');
+		visibility('show', '.readingRestriction', true);
+		visibility('show', '.readingRestrictionRequired', true);
 	}
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).prop('checked'))
 	{
-		visibility('show', '.writingRestriction');
-		visibility('show', '.writingRestrictionRequired');
+		visibility('show', '.writingRestriction', true);
+		visibility('show', '.writingRestrictionRequired', true);
 	}
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).prop('checked'))
 	{
-		visibility('show', '.languageRestriction');
-		visibility('show', '.languageRestrictionRequired');
+		visibility('show', '.languageRestriction', true);
+		visibility('show', '.languageRestrictionRequired', true);
 	}
 			
 	$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).change(function(){
@@ -512,51 +513,51 @@ $(document).ready(function()
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(1).prop('checked', false);
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).prop('checked', false);
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).prop('checked', false);
-			visibility('hide', '.readingRestriction');
-			visibility('hide', '.readingRestrictionRequired');
-			visibility('hide', '.writingRestriction');
-			visibility('hide', '.writingRestrictionRequired');
-			visibility('hide', '.languageRestriction');
-			visibility('hide', '.languageRestrictionRequired');
+			visibility('hide', '.readingRestriction', false);
+			visibility('hide', '.readingRestrictionRequired', false);
+			visibility('hide', '.writingRestriction', false);
+			visibility('hide', '.writingRestrictionRequired', false);
+			visibility('hide', '.languageRestriction', false);
+			visibility('hide', '.languageRestrictionRequired', false);
 		}
 	});
 	$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(1).change(function(){
 		if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(1).prop('checked'))
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
-			visibility('show', '.readingRestriction');
-			visibility('show', '.readingRestrictionRequired');
+			visibility('show', '.readingRestriction', true);
+			visibility('show', '.readingRestrictionRequired', true);
 		}
 		else
 		{
-			visibility('hide', '.readingRestriction');
-			visibility('hide', '.readingRestrictionRequired');
+			visibility('hide', '.readingRestriction', false);
+			visibility('hide', '.readingRestrictionRequired', false);
 		}
 	});
 	$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).change(function(){
 		if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).prop('checked'))
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
-			visibility('show', '.writingRestriction');
-			visibility('show', '.writingRestrictionRequired');
+			visibility('show', '.writingRestriction', true);
+			visibility('show', '.writingRestrictionRequired', true);
 		}
 		else
 		{
-			visibility('hide', '.writingRestriction');
-			visibility('hide', '.writingRestrictionRequired');
+			visibility('hide', '.writingRestriction', false);
+			visibility('hide', '.writingRestrictionRequired', false);
 		}
 	});
 	$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).change(function(){
 		if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).prop('checked'))
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
-			visibility('show', '.languageRestriction');
-			visibility('show', '.languageRestrictionRequired');
+			visibility('show', '.languageRestriction', true);
+			visibility('show', '.languageRestrictionRequired', true);
 		}
 		else
 		{
-			visibility('hide', '.languageRestriction');
-			visibility('hide', '.languageRestrictionRequired');
+			visibility('hide', '.languageRestriction', false);
+			visibility('hide', '.languageRestrictionRequired', false);
 		}
 	});
 });
