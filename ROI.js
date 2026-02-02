@@ -390,6 +390,7 @@ function checkHidden ()
 	visibility('hide', '.expiredROI', false);	
 	visibility('hide', '.invalidROI', false);
 	visibility('hide', '.revokedROI', false);
+	requireField('#revocationDate', false);
 	requireNotes('.revocationNotes', false);
 	
 	if (($('tr').has('div[class*=voidType]').find('option[value=\'' + $('tr').has('div[class*=voidType]').find('select').val() + '\']').text()) == 'Expired')    
@@ -402,6 +403,7 @@ function checkHidden ()
 		visibility('show', '.expiredROI', true);	
 		visibility('hide', '.invalidROI', false);
 		visibility('hide', '.revokedROI', false);
+		requireField('#revocationDate', false);
 		requireNotes('.revocationNotes', false);
 	}
 	else if (($('tr').has('div[class*=voidType]').find('option[value=\'' + $('tr').has('div[class*=voidType]').find('select').val() + '\']').text()) == 'Invalid')     
@@ -414,6 +416,7 @@ function checkHidden ()
 		visibility('hide', '.expiredROI', false);	
 		visibility('show', '.invalidROI', true);
 		visibility('hide', '.revokedROI', false);
+		requireField('#revocationDate', false);
 		requireNotes('.revocationNotes', false);
 	}
 	else if (($('tr').has('div[class*=voidType]').find('option[value=\'' + $('tr').has('div[class*=voidType]').find('select').val() + '\']').text()) == 'Revoked')     
@@ -426,6 +429,7 @@ function checkHidden ()
 		visibility('hide', '.expiredROI', false);	
 		visibility('hide', '.invalidROI', false);
 		visibility('show', '.revokedROI', true);
+		requireField('#revocationDate', true);
 		requireNotes('.revocationNotes', true);
 	}
 }
