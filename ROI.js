@@ -385,7 +385,7 @@ function checkHidden ()
 	$('tr').has('div[class=expiredROI]').find('input').attr('checked', false);
 	$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 	$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);   
-	requireNotes('voidType', false);
+	requireField('voidType', false);
 	visibility('hide', '.revocationDetails', false);
 	visibility('hide', '.expiredROI', false);	
 	visibility('hide', '.invalidROI', false);
@@ -397,7 +397,7 @@ function checkHidden ()
 		$('tr').has('div[class=expiredROI]').find('input').attr('checked', true);
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);
-		requireNotes('#voidType', false);
+		requireField('#voidType', false);
 		visibility('hide', '.revocationDetails');	
 		visibility('show', '.expiredROI', true);	
 		visibility('hide', '.invalidROI', false);
@@ -409,7 +409,7 @@ function checkHidden ()
 		$('tr').has('div[class=expiredROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', true);	
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', false);
-		requireNotes('#voidType', true);
+		requireField('#voidType', true);
 		visibility('hide', '.revocationDetails', false);	
 		visibility('hide', '.expiredROI', false);	
 		visibility('show', '.invalidROI', true);
@@ -421,7 +421,7 @@ function checkHidden ()
 		$('tr').has('div[class=expiredROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=invalidROI]').find('input').attr('checked', false);
 		$('tr').has('div[class=revokedROI]').find('input').attr('checked', true);		
-		requireNotes('#voidType', false);
+		requireField('#voidType', false);
 		visibility('show', '.revocationDetails', true);
 		visibility('hide', '.expiredROI', false);	
 		visibility('hide', '.invalidROI', false);
