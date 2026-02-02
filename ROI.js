@@ -306,11 +306,11 @@ $(document).ready(function(){
 	
 	$('tr').has('div[class*=revocationRequiredDriver]').find('input').change(function()
 	{
-		requireField('#voidType', $('tr').has('div[class*=revocationRequiredDriver]').find('input').prop('checked'));
+		requireField('.voidType', $('tr').has('div[class*=revocationRequiredDriver]').find('input').prop('checked'));
 	});
 	$('tr').has('div[class*=voidType]').find('select').change(function(event)
 	{
-		requireField('#revocationDetails', ($('tr').has('div[class*=voidType]').find('select').val() == $('tr').has('div[class*=voidType]').find('option:contains(\'Revoked\')').val()));
+		requireField(',revocationDetails', ($('tr').has('div[class*=voidType]').find('select').val() == $('tr').has('div[class*=voidType]').find('option:contains(\'Revoked\')').val()));
 	});
 });
 
