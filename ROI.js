@@ -374,9 +374,9 @@ $(document).ready(function(){
 });
 
 function checkVoid(){
-	visibility('hide', '#reason');
+	visibility('hide', '#reason', false);
 	if($('tr').has('div[class=revocationRequiredDriver]').find('input').prop('checked')){
-		visibility('show', '#reason');
+		visibility('show', '#reason', true);
 	}
 }
 
@@ -491,19 +491,19 @@ $(document).ready(function()
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(1).prop('checked'))
 	{
-		visibility('show', '.readingRestriction', true);
+		visibility('show', '.readingRestriction', false);
 		visibility('show', '.readingRestrictionRequired', true);
 	}
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).prop('checked'))
 	{
-		visibility('show', '.writingRestriction', true);
+		visibility('show', '.writingRestriction', false);
 		visibility('show', '.writingRestrictionRequired', true);
 	}
 	
 	if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).prop('checked'))
 	{
-		visibility('show', '.languageRestriction', true);
+		visibility('show', '.languageRestriction', false);
 		visibility('show', '.languageRestrictionRequired', true);
 	}
 			
@@ -525,7 +525,7 @@ $(document).ready(function()
 		if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(1).prop('checked'))
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
-			visibility('show', '.readingRestriction', true);
+			visibility('show', '.readingRestriction', false);
 			visibility('show', '.readingRestrictionRequired', true);
 		}
 		else
@@ -538,7 +538,7 @@ $(document).ready(function()
 		if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(2).prop('checked'))
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
-			visibility('show', '.writingRestriction', true);
+			visibility('show', '.writingRestriction', false);
 			visibility('show', '.writingRestrictionRequired', true);
 		}
 		else
@@ -551,7 +551,7 @@ $(document).ready(function()
 		if($('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(3).prop('checked'))
 		{
 			$('tr').has('div[class*=restrictionRequiredDriver]').find('input').eq(0).prop('checked', false);
-			visibility('show', '.languageRestriction', true);
+			visibility('show', '.languageRestriction', false);
 			visibility('show', '.languageRestrictionRequired', true);
 		}
 		else
